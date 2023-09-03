@@ -1,9 +1,9 @@
-import Header from '/src/components/Header'
 
 function App() {
   return (
     <>
-      <p>Hello World.</p>
+      <p className="text-green-400 text-2xl ">Hello World</p>
+      
     </>
   )
 }
