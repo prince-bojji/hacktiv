@@ -5,13 +5,24 @@ function FreedomPost(props) {
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [isAuthor, setIsAuthor] = useState(true);
 
-	const setDeleting = () => {
+  // When the delete button is clicked
+	const onDeleting = () => {
 		setIsDeleting(true);
 	};
-	const setEditing = () => {
+  // When edit button is clicked
+	const onEdit = () => {
 		setIsEditing(true);
 	};
-	const cancelFunction = () => {
+  // When save on edit is clicked
+  const onSave = () => {
+
+  }
+  // When confirm delete button is clicked
+  const onDelete = () => {
+
+  }
+  // When edit or delete is cancelled
+	const onCancel = () => {
 		setIsDeleting(false);
 		setIsEditing(false);
 	};
@@ -33,7 +44,7 @@ function FreedomPost(props) {
 	};
 	return (
 		<>
-			<div className={(isEditing ? "outline outline-offset-2 outline-secondary-a " : "") + "bg-primary rounded p-8 xs:text-xs md:text-lg xl:text-2xl min-[320px]:w-[92%] md:w-[56%] xl:w-[32%] h-max shadow-[0_0_6px_2px_rgba(0,0,0,0.25)] ease-in duration-200"}>
+			<div className={(isEditing ? "outline outline-offset-2 outline-secondary-a " : "outline-none ") + "bg-primary rounded p-8 xs:text-xs md:text-lg xl:text-2xl min-[320px]:w-[92%] md:w-[56%] xl:w-[32%] h-max shadow-[0_0_6px_2px_rgba(0,0,0,0.25)] ease-in duration-100"}>
 				<div className="grid grid-cols-3 items-center mb-5">
 					<div className="flex items-center col-span-2">
 						{/* replace this span for actual image */}
@@ -47,13 +58,13 @@ function FreedomPost(props) {
 								<>
 									<button
 										className="bg-accent min-[320px]:w-8 lg:w-10 rounded-full aspect-square"
-										onClick={setEditing}
+										onClick={onEdit}
 									>
 										<i className="fa-solid fa-pen-to-square"></i>
 									</button>
 									<button
 										className="bg-warning min-[320px]:w-8 lg:w-10 rounded-full aspect-square"
-										onClick={setDeleting}
+										onClick={onDeleting}
 									>
 										<i className="fa-solid fa-trash min-[320px]:fa-xs"></i>
 									</button>
@@ -64,8 +75,8 @@ function FreedomPost(props) {
                     className="bg-accent w-max p-2 rounded-md font-bold">Save</button>
 									<button 
                     className="bg-warning min-[320px]:w-8 lg:w-12 rounded-full aspect-square"
-                    onClick={cancelFunction}>
-										<i className="fa-solid fa-xmark min-[320px]:fa-xs"></i>
+                    onClick={onCancel}>
+										<i className="fa-solid fa-xmark min-[320px]:fa-xs" style={{color: '#ffffff'}}></i>
 									</button>
 								</>
 							) : (
@@ -73,7 +84,7 @@ function FreedomPost(props) {
 									<button className="bg-warning w-max p-2 rounded-md font-bold">Confirm</button>
 									<button 
                     className="bg-accent min-[320px]:w-8 lg:w-12 rounded-full aspect-square"
-                    onClick={cancelFunction}>
+                    onClick={onCancel}>
 										<i className="fa-solid fa-xmark min-[320px]:fa-xs"></i>
 									</button>
 								</>
@@ -88,11 +99,13 @@ function FreedomPost(props) {
 						<>
 							<input
 								name="title"
+                readOnly={isEditing}
 								className="border-tertiary-b border border-solid shadow-inner rounded-lg font-black min-[320px]:text-3xl lg:text-4xl my-4 h-max p-2"
 								defaultValue={props.title}
 							/>
 							<textarea
 								name="content"
+                readOnly={isEditing}
 								className="border-tertiary-b border border-solid shadow-[inset_0_0_2px_1px_rgba(0,0,0,0.25)] rounded-lg text-justify h-[420px] resize-none p-2"
 								defaultValue={props.content}
 							/>
