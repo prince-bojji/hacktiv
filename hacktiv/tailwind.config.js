@@ -3,7 +3,31 @@ export default {
   content: ["./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
-    extend: {},
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      'primary': '#ffffff',
+      'secondary' : '#0a0a0a',
+      'teriary': '#5c5c5c',
+      'accent': '#ffd02b',
+      'warning': '#f75151',
+      'success': '#60d238',
+      'accent-a' : '#ffda55',
+      'accent-b' : '#f4ce47',
+      'accent-c' : '#f8ba40',
+      'accent-d' : '#b98219',
+      'secondary-a' : '#2f2f2f',
+      'tertiary-a' : '#717171',
+      'tertiary-b' : '#b6b6b6',
+      'tertiary-c' : '#dfdfdf',
+      'primary-a' : '#f8f8f8',
+      'primary-b' : '#f4f4f4'
+    },
+    extend: {
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif']
+      },
+    },
   },
   plugins: [],
 }
