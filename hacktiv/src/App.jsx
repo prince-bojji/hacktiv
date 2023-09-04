@@ -12,9 +12,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <>
-<<<<<<< HEAD
-      <FreedomBoard />
-=======
       <BrowserRouter>
         <NavBar>
           <Routes>
@@ -28,7 +25,6 @@ function App() {
           </Routes>
         </NavBar>
       </BrowserRouter>
->>>>>>> upstream/main
     </>
   );
 }
