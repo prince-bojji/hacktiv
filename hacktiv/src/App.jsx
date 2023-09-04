@@ -11,7 +11,7 @@ import TimeTracker from '/src/pages/TimeTracker'
 function App() {
   return (
     <>
-      <DashBoard />
+      <FreedomBoard />
     </>
   )
 }
