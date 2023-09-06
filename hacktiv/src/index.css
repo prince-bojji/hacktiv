@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.with-placeholder::placeholder{
+    @apply font-normal italic after:content-['...']
+}
