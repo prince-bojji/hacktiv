@@ -33,21 +33,30 @@ function TimeTracker(props) {
   return (
     <div>
       <div>
-        <button onClick={timerRunning ? stopTimer : startTimer}>
+        <button
+          onClick={timerRunning ? stopTimer : startTimer}
+          style={{
+            backgroundColor: 'yellow',
+            color: 'black',
+            marginRight: '10px', // Add margin for spacing
+          }}
+        >
           {timerRunning ? 'Stop Timer' : 'Start Timer'}
         </button>
         <span>Timer: {timerValue} seconds</span>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => props.onSearchChange(e.target.value)}
+          style={{ marginLeft: '10px' }} // Add margin for spacing
+        />
+        <DatePicker
+          selected={selectedDate}
+          onChange={handleDateChange}
+          placeholderText="Select a date"
+          style={{ marginLeft: '10px' }} // Add margin for spacing
+        />
       </div>
-      <input
-        type="text"
-        placeholder="Search..."
-        onChange={(e) => props.onSearchChange(e.target.value)}
-      />
-      <DatePicker
-        selected={selectedDate}
-        onChange={handleDateChange}
-        placeholderText="Select a date"
-      />
     </div>
   );
 }
