@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -17,22 +17,34 @@ function TimeTracker(props) {
     if (!timerRunning) {
       setStartTime(Date.now());
       setTimerRunning(true);
-
-      const timerInterval = setInterval(() => {
-        const currentTime = Date.now();
-        const elapsedTime = (currentTime - startTime) / 1000;
-        setTimerValue(elapsedTime);
-      }, 1000);
-
-      return () => {
-        clearInterval(timerInterval);
-      };
     } else {
-      // Stop the timer if it's already running
       setTimerRunning(false);
       setTimerValue(0);
       setStartTime(null);
     }
+  };
+
+  useEffect(() => {
+    let timerInterval;
+    if (timerRunning) {
+      timerInterval = setInterval(() => {
+        const currentTime = Date.now();
+        const elapsedTime = (currentTime - startTime) / 1000;
+        setTimerValue(elapsedTime);
+      }, 1000);
+    } else {
+      clearInterval(timerInterval);
+    }
+
+    return () => {
+      clearInterval(timerInterval);
+    };
+  }, [timerRunning, startTime]);
+
+  const formatTime = (timeInSeconds) => {
+    const hours = Math.floor(timeInSeconds / 3600).toString().padStart(2, '0');
+    const minutes = Math.floor((timeInSeconds % 3600) / 60).toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
   };
 
   return (
@@ -49,21 +61,19 @@ function TimeTracker(props) {
           placeholderText="Select a date"
           style={{ marginLeft: '10px' }}
         />
-        <button
-          onClick={startTimer}
-          style={{
-            backgroundColor: 'yellow',
-            color: 'black',
-            marginLeft: '10px',
-          }}
-        >
-          {timerRunning ? 'Stop Timer' : 'Start Timer'}
-        </button>
-        <span>
-          {Math.floor(timerValue / 3600).toString().padStart(2, '0')}:
-          {Math.floor((timerValue % 3600) / 60).toString().padStart(2, '0')}:
-          {(timerValue % 60).toString().padStart(2, '0')} (hh:mm:ss)
-        </span>
+        <div style={{ width: '100px' }}> {/* Fixed width container for the timer */}
+          <button
+            onClick={startTimer}
+            style={{
+              backgroundColor: 'yellow',
+              color: 'black',
+              marginLeft: '10px',
+            }}
+          >
+            {timerRunning ? 'Stop Timer' : 'Start Timer'}
+          </button>
+          <span>{formatTime(timerValue)}</span>
+        </div>
       </div>
     </div>
   );
