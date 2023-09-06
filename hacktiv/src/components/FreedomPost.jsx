@@ -1,26 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 function FreedomPost(props) {
-	// Remove this props object for dynamic content
-	props = props.post
+	// Remove this post object for dynamic content
 	const [isEditing, setIsEditing] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [isAuthor, setIsAuthor] = useState(true);
 
-	const [postTitle, setTitle] = useState(props.title)
-	const [postContent, setContent] = useState(props.content)
-	const [properties, setProps] = useState(props)
+	const [post, setPost] = useState(props.post)
+	const [postTitle, setTitle] = useState(post.title)
+	const [postContent, setContent] = useState(post.content)
 
 	// When save edit button is clicked
 	const onSave = () => {
-		setProps({...props, title: postTitle, content: postContent})
-		// properties now contain all the changes, may be used for CRUD, render is only client side not server side, unless Freedomboard will be
+		if(postTitle == "" || postContent == "") return
+		setPost({...post, title: postTitle, content: postContent})
+		// post now contain all the changes, may be used for CRUD, render is only client side not server side, unless Freedomboard will be
 		// re-rendered for each save
 		setIsEditing(false)
-	};
-	// When confirm delete button is clicked
-	const onConfirmDelete = () => {
-		
 	};
 
 	// These functions are for handling state changes
@@ -59,13 +55,15 @@ function FreedomPost(props) {
 					<div className="flex items-center col-span-2">
 						{/* replace this span for actual image */}
 						<span className="bg-tertiary-c rounded-full min-[320px]:w-14 md:w-12 lg:w-16 aspect-square mr-2" />
-						<span className="font-semibold">{props.author}</span>
+						<span className="font-semibold">{post.author}</span>
 					</div>
 					{/* If author is the same as the user, show these buttons */}
 					{isAuthor ? (
 						<>
 							<div className="flex justify-self-end gap-4 items-center">
 								<button
+									form={isEditing ? "editing" : ""}
+									type={isEditing ? "submit" : "button"}
 									className={
 										(isEditing
 											? "bg-accent w-max px-2 py-1 rounded-md font-bold "
@@ -74,7 +72,7 @@ function FreedomPost(props) {
 											: "bg-accent min-[320px]:h-8 h-10 rounded-full aspect-square ") +
 										"ease-in duration-75 flex items-center justify-center"
 									}
-									onClick={isEditing ? onSave : isDeleting ? onConfirmDelete : onEdit}
+									onClick={isEditing ? onSave : isDeleting ? ((e) => props.delete(post.id)) : onEdit}
 								>
 									{isEditing ? (
 										"Save"
@@ -117,13 +115,14 @@ function FreedomPost(props) {
 				</div>
 				<div className="flex flex-col mb-4">
 					{isEditing ? (
-						<>
+						<form id="editing" onSubmit={e => e.preventDefault()} className="flex flex-col mb-4">
 							<input
 								name="title"
 								type="text"
 								className="border-tertiary-b border border-solid shadow-inner rounded-lg font-black min-[320px]:text-3xl lg:text-4xl my-4 h-max p-2"
 								value={postTitle}
 								onChange={titleChange}
+								required={true}
 								maxLength="25"
 							/>
 							<textarea
@@ -131,21 +130,22 @@ function FreedomPost(props) {
 								className="border-tertiary-b border border-solid shadow-[inset_0_0_2px_1px_rgba(0,0,0,0.25)] rounded-lg font-regular text-justify h-[320px] resize-none p-2"
 								value={postContent}
 								onChange={contentChange}
+								required={true}
 								maxLength="1000"
 							/>
-						</>
+						</form>
 					) : (
 						<>
 							<span className="font-black min-[320px]:text-3xl lg:text-4xl my-4">
-								{properties.title}
+								{post.title}
 							</span>
-							<span className="font-normal text-justify break-words ">{properties.content}</span>
+							<span className="font-normal text-justify break-words ">{post.content}</span>
 						</>
 					)}
 				</div>
 				<div className="self-end flex flex-row w-max gap-8 font-light text-md mt-3">
-					<span className="text-secondary">{props.date_posted}</span>
-					<span className="text-secondary">{props.time_posted}</span>
+					<span className="text-secondary">{post.date_posted}</span>
+					<span className="text-secondary">{post.time_posted}</span>
 				</div>
 			</div>
 	);
