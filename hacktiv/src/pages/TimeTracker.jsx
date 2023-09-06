@@ -54,7 +54,7 @@ function TimeTracker(props) {
         >
           {timerRunning ? 'Stop Timer' : 'Start Timer'}
         </button>
-        <span>Timer: {timerValue} seconds</span>
+        <span> {timerValue} seconds</span>
       </div>
     </div>
   );
