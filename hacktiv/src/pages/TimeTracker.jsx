@@ -49,30 +49,29 @@ function TimeTracker(props) {
 
   return (
     <div>
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <input
           type="text"
           placeholder="Search..."
           onChange={(e) => props.onSearchChange(e.target.value)}
         />
-        <DatePicker
-          selected={selectedDate}
-          onChange={handleDateChange}
-          placeholderText="Select a date"
-          style={{ marginLeft: '10px' }}
-        />
-        <div style={{ width: '100px' }}> {/* Fixed width container for the timer */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <DatePicker
+            selected={selectedDate}
+            onChange={handleDateChange}
+            placeholderText="Select a date"
+            style={{ marginRight: '10px' }}
+          />
           <button
             onClick={startTimer}
             style={{
               backgroundColor: 'yellow',
               color: 'black',
-              marginLeft: '10px',
             }}
           >
             {timerRunning ? 'Stop Timer' : 'Start Timer'}
           </button>
-          <span>{formatTime(timerValue)}</span>
+          <span style={{ marginLeft: '10px' }}>{formatTime(timerValue)}</span>
         </div>
       </div>
     </div>
