@@ -2,10 +2,14 @@ import React from 'react'
 
 function TimeTracker() {
   return (
-    <>
-     <p>Time Tracker</p>
-    </>
-  )
+    <div>
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => props.onSearchChange(e.target.value)}
+      />
+    </div>
+  );
 }
 
 export default TimeTracker
