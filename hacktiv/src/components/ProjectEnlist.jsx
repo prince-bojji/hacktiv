@@ -1,30 +1,12 @@
 import React, { useRef, useState } from "react";
+import CreateProject from "./CreateProject";
 
 function ProjectEnlisting(props) {
-	const [isEditing, setIsEditing] = useState(false);
-	const [isDeleting, setIsDeleting] = useState(false);
-	const [isAuthor, setIsAuthor] = useState(true);
+	const [isCreating, setIsCreating] = useState(false);
 
-  // When the delete button is clicked
-	const onDeleting = () => {
-		setIsDeleting(true);
-	};
-  // When edit button is clicked
-	const onEdit = () => {
-		setIsEditing(true);
-	};
-  // When save on edit is clicked
-  const onSave = () => {
-
-  }
-  // When confirm delete button is clicked
-  const onDelete = () => {
-
-  }
-  // When edit or delete is cancelled
-	const onCancel = () => {
-		setIsDeleting(false);
-		setIsEditing(false);
+	// When the create new project button is clicked
+	const onCreating = () => {
+		setIsCreating(true);
 	};
 
 	// Remove this props object for dynamic content
@@ -44,88 +26,131 @@ function ProjectEnlisting(props) {
 	};
 	return (
 		<>
-			<div className={(isEditing ? "outline outline-offset-2 outline-secondary-a " : "outline-none ") + "bg-primary rounded p-8 xs:text-xs md:text-lg xl:text-2xl min-[320px]:w-[92%] md:w-[56%] xl:w-[32%] h-max shadow-[0_0_6px_2px_rgba(0,0,0,0.25)] ease-in duration-100"}>
-				<div className="grid grid-cols-3 items-center mb-5">
-					<div className="flex items-center col-span-2">
-						{/* replace this span for actual image */}
-						<span className="bg-tertiary-b rounded-full min-[320px]:w-16 md:w-14 lg:w-20 aspect-square mr-2" />
-						<span className="font-semibold">{props.author}</span>
-					</div>
-					{/* If author is the same is the user, show these buttons */}
-					{isAuthor ? (
-						<div className="flex justify-self-end gap-4">
-							{!isEditing && !isDeleting ? (
-								<>
-									<button
-										className="bg-accent min-[320px]:w-8 lg:w-10 rounded-full aspect-square"
-										onClick={onEdit}
-									>
-										<i className="fa-solid fa-pen-to-square"></i>
-									</button>
-									<button
-										className="bg-warning min-[320px]:w-8 lg:w-10 rounded-full aspect-square"
-										onClick={onDeleting}
-									>
-										<i className="fa-solid fa-trash min-[320px]:fa-xs"></i>
-									</button>
-								</>
-							) : isEditing ? (
-								<>
-									<button
-                    className="bg-accent w-max p-2 rounded-md font-bold">Save</button>
-									<button 
-                    className="bg-warning min-[320px]:w-8 lg:w-12 rounded-full aspect-square"
-                    onClick={onCancel}>
-										<i className="fa-solid fa-xmark min-[320px]:fa-xs" style={{color: '#ffffff'}}></i>
-									</button>
-								</>
-							) : (
-								<>
-									<button className="bg-warning w-max p-2 rounded-md font-bold">Confirm</button>
-									<button 
-                    className="bg-accent min-[320px]:w-8 lg:w-12 rounded-full aspect-square"
-                    onClick={onCancel}>
-										<i className="fa-solid fa-xmark min-[320px]:fa-xs"></i>
-									</button>
-								</>
-							)}
-						</div>
-					) : (
-						<></>
-					)}
-				</div>
-				<div className="flex flex-col mb-4">
-					{isEditing ? (
-						<>
-							<input
-								name="title"
-                readOnly={isEditing}
-								className="border-tertiary-b border border-solid shadow-inner rounded-lg font-black min-[320px]:text-3xl lg:text-4xl my-4 h-max p-2"
-								defaultValue={props.title}
-							/>
-							<textarea
-								name="content"
-                readOnly={isEditing}
-								className="border-tertiary-b border border-solid shadow-[inset_0_0_2px_1px_rgba(0,0,0,0.25)] rounded-lg text-justify h-[420px] resize-none p-2"
-								defaultValue={props.content}
-							/>
-						</>
-					) : (
-						<>
-							<span className="font-black min-[320px]:text-3xl lg:text-4xl my-4">
-								{props.title}
-							</span>
-							<span className="text-justify">{props.content}</span>
-						</>
-					)}
-				</div>
-				<div className="float-right flex flex-row w-max gap-8 font-extralight text-sm mt-2">
-					<span className="text-tertiary-a">{props.date_posted}</span>
-					<span className="text-tertiary-a">{props.time_posted}</span>
-				</div>
+		{!isCreating ? (
+			<>
+			<button 
+			className="bg-accent px-7 py-2 rounded p-5 text-secondary-a [320px]:text-md lg:text-lg xl:font-normal mb-4 float-right"
+			onClick={onCreating}>Create New Project
+		</button>
+		<div className={"bg-primary border-secondary-a rounded-t p-4 border border-solid border-b-tertiary-a min-[320px]:text-md lg:text-md font-bold pb-4 mt-16 shadow-[0_0_1px_1px_rgba(0,0,0,0.25)]"}>
+			Search Project
+		</div>
+		<div className={"bg-primary border rounded-b xs:text-xs md:text-lg xl:text-lg min-[320px]:w-[100%] md:w-[100%] xl:w-[100%] min-[320px]:h-[43px] md:h-[47px] xl:h-[48px] shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100"}>
+			<div class="grid-cols-2">
+				<input type="search"
+                    name="project collaborator"
+                    className="border-transparent border-tertiary-b border border-solid shadow-inner text-md h-max p-2 md:p-2 xl:p-2 w-[68%] md:w-[80%] xl:w-[90%] pl-2"
+                    placeholder="Find by name"
+                />
+				<button 
+					className="bg-accent px-7 py-1 rounded text-secondary-a text-md xl:font-normal ml-2">Find
+				</button>
 			</div>
+		</div>
+		<div className={"bg-accent rounded-t p-4 border-transparent border border-secondary border-solid border-b-tertiary-a min-[320px]:text-md lg:text-md font-bold pb-4 mt-7 shadow-[0_0_1px_1px_rgba(0,0,0,0.25)]"}>
+			Project
+		</div>
+		<div className={"bg-primary dark:bg-gray-800 border rounded-b p-1 xs:text-xs md:text-lg xl:text-lg min-[320px]:w-[100%] md:w-[100%] xl:w-[100%] h-max shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100"}>
+		<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="border-b text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Project name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Deadline
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Dropdown
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    test
+                </th>
+                <td class="px-6 py-4">
+                    Ongoing
+                </td>
+                <td class="px-6 py-4">
+                    August 31, 2023
+                </td>
+                <td class="px-6 py-4">
+                    ^
+                </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    test1
+                </th>
+                <td class="px-6 py-4">
+                    Ongoing
+                </td>
+                <td class="px-6 py-4">
+                    August 31, 2023
+                </td>
+                <td class="px-6 py-4">
+                    ^
+                </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    test2
+                </th>
+                <td class="px-6 py-4">
+                    Completed
+                </td>
+                <td class="px-6 py-4">
+                    August 31, 2023
+                </td>
+                <td class="px-6 py-4">
+                    ^
+                </td>
+            </tr>
+			<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    test3
+                </th>
+                <td class="px-6 py-4">
+                    Completed
+                </td>
+                <td class="px-6 py-4">
+                    September 10, 2023
+                </td>
+                <td class="px-6 py-4">
+                    ^
+                </td>
+            </tr>
+			<tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    test4
+                </th>
+                <td class="px-6 py-4">
+                    Ongoing
+                </td>
+                <td class="px-6 py-4">
+                    September 10, 2023
+                </td>
+                <td class="px-6 py-4">
+                    ^
+                </td>
+				</tr>
+		</tbody>
+	</table>
+	</div>
+	</div>
+	</>): (
+		<>
+		<div className="justify-center items-center h-max"></div>
+		<CreateProject />
 		</>
-	);
-}
+	)};
+	</>
+)}
 
 export default ProjectEnlisting;
