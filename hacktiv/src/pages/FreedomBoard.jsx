@@ -92,6 +92,7 @@ function FreedomBoard() {
 
 	// All components are CSR atm
 	const [posts, setPosts] = useState(testData)
+	const [active, setActive] = useState(0)
 
 	const [creatingPost, createPost] = useState(false)
 	const [currentSelection, setSelection] = useState(0)
@@ -131,6 +132,7 @@ function FreedomBoard() {
 	// Filter setposts
 	const showYourPost = () => {
 		// setPosts(testData)
+		setActive(0)
 		createPost(false)
 		setSelection(0)
 		setPrev(0)
@@ -138,12 +140,14 @@ function FreedomBoard() {
 	// Filter setposts
 	const showAllPost = () => {
 		// setPosts(testData)
+		setActive(0)
 		createPost(false)
 		setSelection(2)
 		setPrev(2)
 	}
 	// Used for setting states
 	const createNewPost = () => {
+		setActive(0)
 		createPost(true)
 		setSelection(1)
 	}
@@ -226,12 +230,12 @@ function FreedomBoard() {
 			<div className={(posts.length == 0 ? "hidden" : "flex") + " lg:p-10 py-5 justify-center items-start content-center flex-wrap md:flex-row min-[320px]:flex-col gap-y-8 font-inter h-max w-full"}>
 				<div className="gap-y-8 flex flex-wrap flex-col lg:w-[50%] lg:pe-6 lg:border-e-[1px] border-secondary-a min-[320px]:w-[96%] justify-center content-center">
 					{posts.filter((val, index) => index % 2 == 0).map((val, index) => (
-						<FreedomPost post={val} delete={deletePost} key={index + val.id + val.date_posted + val.time_posted} />
+						<FreedomPost post={val} select={[active, setActive]} delete={deletePost} key={index + val.id + val.date_posted + val.time_posted} />
 					))}
 				</div>
 				<div className="gap-y-8 flex flex-wrap flex-col lg:w-[50%] lg:ps-6 min-[320px]:w-[96%] justify-center content-center ">
 					{posts.filter((val, index) => index % 2 != 0).map((val, index) => (
-						<FreedomPost post={val} delete={deletePost} key={index + val.id + val.date_posted + val.time_posted} />
+						<FreedomPost post={val} select={[active, setActive]} delete={deletePost} key={index + val.id + val.date_posted + val.time_posted} />
 					))}
 				</div>
 			</div>

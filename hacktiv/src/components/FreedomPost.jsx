@@ -5,6 +5,7 @@ function FreedomPost(props) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [isAuthor, setIsAuthor] = useState(true);
+	const [isActive, setActive] = props.select
 
 	const [post, setPost] = useState(props.post)
 	const [postTitle, setTitle] = useState(post.title)
@@ -16,6 +17,7 @@ function FreedomPost(props) {
 		setPost({...post, title: postTitle, content: postContent})
 		// post now contain all the changes, may be used for CRUD, render is only client side not server side, unless Freedomboard will be
 		// re-rendered for each save
+
 		setIsEditing(false)
 	};
 
@@ -29,10 +31,12 @@ function FreedomPost(props) {
 	}
 
 	const onDeleting = () => {
+		setActive(post.id)
 		setIsDeleting(true);
 	};
 
 	const onEdit = () => {
+		setActive(post.id)
 		setIsEditing(true);
 	};
 
@@ -41,10 +45,17 @@ function FreedomPost(props) {
 		setIsEditing(false);
 	};
 
+	const isSelected = () => {
+		if(post.id == isActive)
+			return true
+		onCancel()
+	}
+
 	return (
 			<div
+			onFocus={() => {setActive(post.id)}}
 				className={
-					(isEditing
+					(((isEditing || isDeleting)  && isSelected())
 						? "outline outline-offset-2 outline-secondary-a "
 						: "outline-none ") +
 						// min-[320px]:w-[92%] md:w-[56%] xl:w-[32%]
