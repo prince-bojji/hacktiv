@@ -51,7 +51,7 @@ const NavBar = ({ children }) => {
   return (
     <>
       <Header />
-      <div className='flex absolute top-8'>
+      <div className='flex relative top-8'>
         <div
           style={{ width: isOpen ? '200px' : '50px' }}
           className='sidebar fixed bg-white text-black h-screen transition-all duration-500'>
