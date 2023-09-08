@@ -1,9 +1,10 @@
 import React from 'react'
+import ProjectEnlist from '../components/ProjectEnlist'
 
 function ProjectEnlisting() {
   return (
     <>
-     <p>Project Enlisting</p>
+        <ProjectEnlist />
     </>
   )
 }
