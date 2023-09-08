@@ -47,7 +47,7 @@ function ProjectEnlisting(props) {
 				</button>
 			</div>
 		</div>
-		<div className={"bg-accent rounded-t p-4 border-transparent border border-secondary border-solid border-b-tertiary-a min-[320px]:text-md lg:text-md font-bold pb-4 mt-7 shadow-[0_0_1px_1px_rgba(0,0,0,0.25)]"}>
+		<div className={"bg-accent rounded-t p-4 border border-secondary border-solid border-b-tertiary-a min-[320px]:text-md lg:text-md font-bold pb-4 mt-7 shadow-[0_0_1px_1px_rgba(0,0,0,0.25)]"}>
 			Project
 		</div>
 		<div className={"bg-primary dark:bg-gray-800 border rounded-b p-1 xs:text-xs md:text-lg xl:text-lg min-[320px]:w-[100%] md:w-[100%] xl:w-[100%] h-max shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100"}>
