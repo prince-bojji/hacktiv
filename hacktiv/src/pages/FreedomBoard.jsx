@@ -159,35 +159,33 @@ function FreedomBoard() {
 		setContent(e.target.value)
 	}
 
-	const left = posts.filter((val, index) => index % 2 == 0);
-	const right = posts.filter((val, index) => index % 2 != 0);
-
 	return (
-		<div className={"block bg-accent-bg-a overflow-hidden"}>
+			
+		<div className={"block bg-accent-bg-a overflow-hidden rounded-t-xl"}>
 			<div className={(creatingPost ? "block" : "hidden" ) + " fixed top-0 left-0 bg-secondary-bg w-full h-full flex justify-center rounded-xl items-center"}>
 				<form  onSubmit={e => e.preventDefault()} id="posting" className="bg-primary flex flex-col rounded-3xl py-8 px-6 xs:text-xs md:text-lg xl:text-2xl m-0 h-[75vh] w-[80%] lg:shadow-[0_0_6px_2px_rgba(0,0,0,0.25)] shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100">
 				<div className=" bg-accent font-black w-max py-2 px-5 mb-8 rounded-full text-2xl">
-					Create New Post
+				<i className="p-2 first-letter:rounded-full fa-solid fa-pen"></i> Create New Post
 				</div>
-							<label htmlFor="title" className="font-black min-[320px]:text-2xl lg:text-4xl" >
+							<label htmlFor="title" className="mb-2 font-medium min-[320px]:text-2xl lg:text-4xl" >
 								Title
 							</label>
 							<input
 								name="title"
 								type="text"
-								className="with-placeholder border-tertiary-b border border-solid shadow-inner rounded-lg font-black min-[320px]:text-3xl lg:text-4xl my-4 h-max p-2"
+								className="with-placeholder border-tertiary-b border border-solid shadow-inner rounded-lg font-black min-[320px]:text-3xl lg:text-4xl my-4 h-max p-4"
 								value={newTitle}
 								onChange={titleChange}
 								required={true}
 								placeholder="Title"
 								maxLength="25"
 							/>
-							<label htmlFor="content" className="font-black min-[320px]:text-lg lg:text-2xl">
+							<label htmlFor="content" className="mb-2 font-medium min-[320px]:text-lg lg:text-2xl">
 								I will post about
 							</label>
 							<textarea
 								name="content"
-								className="with-placeholder border-tertiary-b border border-solid shadow-[inset_0_0_2px_1px_rgba(0,0,0,0.25)] rounded-lg font-regular text-justify h-[320px] resize-none p-2"
+								className="with-placeholder border-tertiary-b border border-solid shadow-[inset_0_0_2px_1px_rgba(0,0,0,0.25)] rounded-lg font-regular text-justify h-[320px] resize-none p-4"
 								value={newContent}
 								onChange={contentChange}
 								required={true}
@@ -199,6 +197,11 @@ function FreedomBoard() {
 								<button className="bg-warning w-max px-2 py-1 rounded-md font-bold " onClick={cancelPost}>Cancel</button>
 							</div>
 				</form>
+			</div>
+			<div className="lg:flex hidden flex-row align-middle gap-8 pl-8 h-max py-4 bg-secondary">
+				<button className={ "bg-secondary text-primary border-2 font-bold text-lg font-doppio px-4 py-2 rounded-full min-w-max"} onClick={createNewPost}> <i className="p-2 first-letter:rounded-full fa-solid fa-pen"></i>Create Post</button>
+				<button className={(currentSelection != 0 ? "bg-secondary text-primary border-2": "bg-accent ") + " font-bold text-lg font-doppio px-4 py-2 rounded-full min-w-max"} onClick={showYourPost}>  <i className="p-2 rounded-full fa-solid fa-user"></i>Your Post</button>
+				<button className={(currentSelection != 2 ? "bg-secondary text-primary border-2": "bg-accent ") + " font-bold text-lg font-doppio px-4 py-2 rounded-full min-w-max"} onClick={showAllPost}>   <i className="p-2 rounded-full fa-solid fa-house"></i>All Post</button>
 			</div>
 			<div className="lg:hidden flex items-center ps-4 pt-6 m-0 font-doppio">
 				<div className=" bg-accent font-black w-max py-2 px-5 rounded-full text-2xl">
@@ -233,9 +236,9 @@ function FreedomBoard() {
 				</div>
 			</div>
 			<div className="lg:hidden flex flex-row align-middle justify-between px-32 fixed bottom-0 left-0 w-screen h-[48px] bg-secondary">
-				<button className={(currentSelection == 0 ? "bg-accent ": "") + "aspect-square "} onClick={showYourPost}><i className="p-2 bg-accent rounded-full fa-solid fa-user"></i></button>
+				<button className={(currentSelection == 0 ? "bg-accent ": "") + "aspect-square "} onClick={showYourPost}> <i className="p-2 bg-accent rounded-full fa-solid fa-user"></i></button>
 				<button className={(currentSelection == 1 ? "bg-accent ": "") + "aspect-square "} onClick={createNewPost}><i className="p-2 bg-accent rounded-full fa-solid fa-pen"></i></button>
-				<button className={(currentSelection == 2 ? "bg-accent ": "") + "aspect-square "} onClick={showAllPost}><i className="p-2 bg-accent rounded-full fa-solid fa-house"></i></button>
+				<button className={(currentSelection == 2 ? "bg-accent ": "") + "aspect-square "} onClick={showAllPost}>  <i className="p-2 bg-accent rounded-full fa-solid fa-house"></i></button>
 			</div>
 		</div>
 	);
