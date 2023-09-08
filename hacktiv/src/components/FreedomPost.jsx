@@ -48,7 +48,7 @@ function FreedomPost(props) {
 						? "outline outline-offset-2 outline-secondary-a "
 						: "outline-none ") +
 						// min-[320px]:w-[92%] md:w-[56%] xl:w-[32%]
-					"bg-primary flex flex-col flex-1 rounded py-3 px-6 xs:text-xs md:text-lg xl:text-2xl m-0 h-max lg:shadow-[0_0_6px_2px_rgba(0,0,0,0.25)] shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100"
+					"bg-primary w-full min-w-full max-w-full flex flex-col rounded py-3 px-6 xs:text-xs md:text-lg xl:text-2xl m-0 h-max lg:shadow-[0_0_6px_2px_rgba(0,0,0,0.25)] shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100"
 				}
 			>
 				<div className="grid grid-cols-3 items-center mb-5">

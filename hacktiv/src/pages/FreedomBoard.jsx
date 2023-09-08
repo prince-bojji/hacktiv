@@ -107,6 +107,7 @@ function FreedomBoard() {
 			id : Math.random() * 1000 + 10,
 			title: newTitle,
 			content: newContent,
+			author: "Pedro Pendococo",
 			date_posted:
 			date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear(),
 			time_posted:
@@ -162,7 +163,7 @@ function FreedomBoard() {
 	const right = posts.filter((val, index) => index % 2 != 0);
 
 	return (
-		<div className={"lg:bg-transparent block bg-accent-bg-a overflow-hidden"}>
+		<div className={"block bg-accent-bg-a overflow-hidden"}>
 			<div className={(creatingPost ? "block" : "hidden" ) + " fixed top-0 left-0 bg-secondary-bg w-full h-full flex justify-center rounded-xl items-center"}>
 				<form  onSubmit={e => e.preventDefault()} id="posting" className="bg-primary flex flex-col rounded-3xl py-8 px-6 xs:text-xs md:text-lg xl:text-2xl m-0 h-[75vh] w-[80%] lg:shadow-[0_0_6px_2px_rgba(0,0,0,0.25)] shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100">
 				<div className=" bg-accent font-black w-max py-2 px-5 mb-8 rounded-full text-2xl">
@@ -201,12 +202,25 @@ function FreedomBoard() {
 			</div>
 			<div className="lg:hidden flex items-center ps-4 pt-6 m-0 font-doppio">
 				<div className=" bg-accent font-black w-max py-2 px-5 rounded-full text-2xl">
-					All Posts
+					{
+						currentSelection == 0 ? "Your Posts" :
+						(
+							currentSelection == 2 ? "All Posts" :
+							(
+								prevSelect == 0 ? "Your Posts" : "All Posts"
+							)
+						)
+					}
 				</div>
 				<hr className="flex-1 h-3" />
 			</div>
 			{/* lg:grid-cols-2 min-[320px]:grid-cols-1 grid */}
-			<div className="lg:bg-accent-bg-a lg:p-10 py-5 justify-center items-start content-center flex flex-wrap md:flex-row min-[320px]:flex-col gap-y-8 font-inter h-max w-full">
+			<div className={(posts.length == 0 ? "flex" : "hidden") + " h-[50vh] items-center justify-center ps-4 pt-6 m-0 font-doppio"}>
+				<div className=" bg-accent font-black w-max py-2 px-5 rounded-full text-2xl">
+					No Posts
+				</div>
+			</div>
+			<div className={(posts.length == 0 ? "hidden" : "flex") + " lg:p-10 py-5 justify-center items-start content-center flex-wrap md:flex-row min-[320px]:flex-col gap-y-8 font-inter h-max w-full"}>
 				<div className="gap-y-8 flex flex-wrap flex-col lg:w-[50%] lg:pe-6 lg:border-e-[1px] border-secondary-a min-[320px]:w-[96%] justify-center content-center">
 					{posts.filter((val, index) => index % 2 == 0).map((val, index) => (
 						<FreedomPost post={val} delete={deletePost} key={index + val.id + val.date_posted + val.time_posted} />
