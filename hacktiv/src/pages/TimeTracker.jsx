@@ -1,9 +1,12 @@
 import React from 'react'
+import TimeTrackerPage from '../components/TimeTrackerPage'
 
 function TimeTracker() {
   return (
     <>
-     <p>Time Tracker</p>
+     <div className="font-inter">
+        <TimeTrackerPage />
+     </div>
     </>
   )
 }
