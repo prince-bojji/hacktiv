@@ -102,6 +102,7 @@ function FreedomBoard() {
 	const [newContent , setContent] = useState("")
 
 	// For when the user submits post, use newTitle and newContent
+	// Creating post is client side, no loading, no assurance if it is uploaded to the server
 	const submitPost = () => {
 		if(newTitle == "" || newContent == "") return
 		const newPost = {
