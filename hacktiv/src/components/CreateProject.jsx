@@ -1,9 +1,5 @@
 import React, { useRef, useState } from "react";
 import ProjectEnlist from './ProjectEnlist'
-import {
-    FaUserPlus,
-} from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
 
 function CreateProject(props) {
 	const [isCancel, setIsCancel] = useState(false);
