@@ -204,7 +204,7 @@ function FreedomBoard() {
 				</form>
 			</div>
 			<div className="lg:flex hidden flex-row align-middle gap-8 pl-8 h-max py-4 bg-secondary">
-				<button className={ "bg-secondary text-primary border-2 font-bold text-lg font-doppio px-4 py-2 rounded-full min-w-max"} onClick={createNewPost}> <i className="p-2 first-letter:rounded-full fa-solid fa-pen"></i>Create Post</button>
+				<button className={(currentSelection != 1 ? "bg-secondary text-primary border-2": "bg-accent ") + " font-bold text-lg font-doppio px-4 py-2 rounded-full min-w-max"} onClick={createNewPost}> <i className="p-2 first-letter:rounded-full fa-solid fa-pen"></i>Create Post</button>
 				<button className={(currentSelection != 0 ? "bg-secondary text-primary border-2": "bg-accent ") + " font-bold text-lg font-doppio px-4 py-2 rounded-full min-w-max"} onClick={showYourPost}>  <i className="p-2 rounded-full fa-solid fa-user"></i>Your Post</button>
 				<button className={(currentSelection != 2 ? "bg-secondary text-primary border-2": "bg-accent ") + " font-bold text-lg font-doppio px-4 py-2 rounded-full min-w-max"} onClick={showAllPost}>   <i className="p-2 rounded-full fa-solid fa-house"></i>All Post</button>
 			</div>
