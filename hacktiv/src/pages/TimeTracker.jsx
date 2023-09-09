@@ -1,11 +1,11 @@
 import React from 'react'
-import TimeTrackerPage from '../components/TimeTrackerPage'
+import TimeLogs from '../components/TimeLogs'
 
 function TimeTracker() {
   return (
     <>
      <div className="font-inter">
-        <TimeTrackerPage />
+        <TimeLogs />
      </div>
     </>
   )
