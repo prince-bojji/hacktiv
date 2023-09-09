@@ -1,9 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from "react"
 import ProjectEnlist from './ProjectEnlist'
-import {
-    FaUserPlus,
-} from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
 
 function ViewProject(props) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -72,7 +68,7 @@ function ViewProject(props) {
 					<label className="text-sm text-tertiary-b text-center">Project Name</label>
 					<input
 					name="project name"
-					className="border-tertiary-b border border-solid shadow-inner rounded-lg min-[320px]:text-md lg:text-xl my-2 h-max p-3 md:p-4 xl:p-5 w-full"
+					className="border-tertiary-b border border-solid shadow-inner rounded-lg min-[320px]:text-md lg:text-xl my-2 h-max p-3 md:p-4 xl:p-5 w-full" disabled
 					defaultValue={props.project_name}
 					/>
 				</div>
@@ -111,7 +107,7 @@ function ViewProject(props) {
 					<input
 					type="date"
 					name="project deadline"
-					className="border-tertiary-b border border-solid shadow-inner rounded-lg min-[320px]:text-md lg:text-xl my-2 h-max p-3 md:p-4 xl:p-5 w-full"
+					className="border-tertiary-b border border-solid shadow-inner rounded-lg min-[320px]:text-md lg:text-xl my-2 h-max p-3 md:p-4 xl:p-5 w-full" disabled
 					defaultValue={props.deadline}
 					/>
 				</div>

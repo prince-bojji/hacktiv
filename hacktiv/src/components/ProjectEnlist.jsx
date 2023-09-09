@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import CreateProject from "./CreateProject";
-import ViewProject from './ViewProject';
-import EditProject from './EditProject';
+import React, { useState, useRef, useEffect } from 'react'
+import CreateProject from "./CreateProject"
+import ViewProject from './ViewProject'
+import EditProject from './EditProject'
 
 const projectData = [
     {
@@ -105,15 +105,6 @@ function ProjectEnlisting(props) {
     setOpenDropdownIndex(openDropdownIndex === index ? null : index);
   };
 
-	// Remove this props object for dynamic content
-	const date = new Date();
-	props = {
-		project_name: "test",
-        project_status: "Ongoing",
-        deadline: "August 31, 2023",
-        project_details: "lorem",
-        collaborators: "juandelacruz@gmail.com",
-	};
 	return (
 		<>
 		{!isCreating && !isView && !isEdit ? (
