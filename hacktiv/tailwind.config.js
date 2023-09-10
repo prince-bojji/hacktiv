@@ -32,10 +32,6 @@ export default {
         'doppio': ['Doppio One', 'sans-serif']
       },
     },
-    width: {
-      'full': '100%',
-      '1/4': '25%',
-    },
   },
   plugins: [
   ],
