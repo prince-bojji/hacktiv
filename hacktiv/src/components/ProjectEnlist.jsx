@@ -163,7 +163,7 @@ function ProjectEnlisting(props) {
     {projectData.map((project, index) => (
       <tr
         key={index}
-        className="bg-primary border-t dark:bg-tertiary-b dark:border-tertiary-c"
+        className="bg-primary-b border-t dark:bg-tertiary-b dark:border-tertiary-c"
       >
         <th
           scope="row"
@@ -183,7 +183,7 @@ function ProjectEnlisting(props) {
             <div>
               <button
                 id="menu-button"
-                className="flex items-center space-x-1 p-2 text-tertiary-a hover:text-secondary bg-primary focus:outline-none"
+                className="bg-primary-b flex items-center space-x-1 p-2 text-tertiary-a hover:text-secondary  focus:outline-none"
                 onClick={() => toggleDropdown(index)}
               >
                 <svg
