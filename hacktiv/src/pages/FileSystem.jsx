@@ -31,7 +31,7 @@ function FileSystem() {
     };
 
     return (
-        <div className="bg-primary-b flex flex-col justify-center items-center rounded-lg mt-1 mx-4 ml-96 w-full md:w-96">
+        <div className=" bg-primary-b flex flex-col justify-center items-center rounded-lg  mt-1 mx-4">
             <div className="bg-primary-b rounded-lg p-2 shadow-lg relative z-50">
                 <div className="bg-accent-b rounded-lg p-2 w-full md:w-96">
                     <div className="relative flex items-center">
