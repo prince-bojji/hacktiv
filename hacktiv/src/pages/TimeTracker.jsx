@@ -1,9 +1,12 @@
 import React from 'react'
+import TimeLogs from '../components/TimeLogs'
 
 function TimeTracker() {
   return (
     <>
-     <p>Time Tracker</p>
+     <div className="font-inter">
+        <TimeLogs />
+     </div>
     </>
   )
 }
