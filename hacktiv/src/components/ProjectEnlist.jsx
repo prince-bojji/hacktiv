@@ -171,6 +171,7 @@ function ProjectEnlisting(props) {
         >
           {project.project_name}
         </th>
+        
         {/* Hide the "Status" and "Deadline" columns on small screens */}
         <td className="hidden md:table-cell px-6 py-4">
           {project.project_status}
