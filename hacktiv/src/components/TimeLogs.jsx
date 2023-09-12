@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 import ProjectTracker from './ProjectTracker';
+import AttendanceRecord from './AttendanceRecord';
 
 function TimeLogs() {
     const [projectTracker, setProjectTracker] = useState(false);
+    const [attendanceRecord, setAttendanceRecord] = useState(false);
 
     const onProjectTracker = () => {
         setProjectTracker(true);
     }
 
+    const onAttendanceRecord = () => {
+        setAttendanceRecord(true);
+    }
+
     return (
         <div>
-            {!projectTracker ? (
+            {!projectTracker && !attendanceRecord ? (
                 <>
                     <div>
                         <button
                             className="bg-accent py-2 rounded text-secondary-a min-[320px]:px-1 sm:px-7 lg:text-lg xl:font-normal mb-4 float-right mr-5"
-                        >Attendance
+                            onClick={onAttendanceRecord}>Attendance
                         </button>
                         <button
                             className="bg-accent py-2 rounded text-secondary-a min-[320px]:px-1 sm:px-7 lg:text-lg xl:font-normal mb-4 float-right mr-5"
@@ -23,15 +29,16 @@ function TimeLogs() {
                         </button>
                         <p className="text-lg font-bold">Time Records</p>
                         <div className="w-full">
-                          
+
                             <div className="mt-2 text-xl font-bold border border-secondary-a rounded-t p-4 flex bg-accent-a w-full h-[65px] items-center">
                                 This Week
                             </div>
+
                             <div className={"bg-primary dark:bg-gray-800 border rounded-b p-1 xs:text-xs md:text-lg xl:text-lg min-[320px]:w-[100%] md:w-[100%] xl:w-[100%] h-max shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100"}>
                                 <div className='flex font-bold justify-between items-center'>
                                     <p className="pl-5">Date</p>
-                                    <button                                   
-                                        className="bg-accent border border-secondary-a py-2 rounded text-secondary-a mt-2 mb-2 min-[320px]:ml-[45px] min-[320px]:p-1 min-[320px]:text-xs sm:text-lg sm:px-5 sm:ml-[70px] md:ml-[87px] lg:ml-[97px] xl:ml-[120px]"                                        
+                                    <button
+                                        className="bg-accent border border-secondary-a py-2 rounded text-secondary-a mt-2 mb-2 min-[320px]:ml-[45px] min-[320px]:p-1 min-[320px]:text-xs sm:text-lg sm:px-5 sm:ml-[70px] md:ml-[87px] lg:ml-[97px] xl:ml-[120px]"
                                     >Time in
                                     </button>
                                     <button
@@ -40,10 +47,10 @@ function TimeLogs() {
                                     </button>
                                 </div>
 
-                                {/* The past seven business days should appear here */}                              
+                                {/* The past seven business days should appear here */}
                                 <div className='flex p-2 px-5 min-[320px]:gap-5 sm:gap-0'>
                                     <p className='w-[45%]'>September 02, 2023</p>
-                                    <p className='w-[40%]'>8:00</p>                                  
+                                    <p className='w-[40%]'>8:00</p>
                                     <p>15:00</p>
                                 </div>
                                 <hr />
@@ -117,10 +124,11 @@ function TimeLogs() {
                                     <p>16:53</p>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </>
-            ) : <ProjectTracker />}
+            ) : projectTracker ? (<ProjectTracker />) : attendanceRecord ? (<AttendanceRecord />) : <></>}
         </div>
     )
 }
