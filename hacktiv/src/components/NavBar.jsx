@@ -51,10 +51,10 @@ const NavBar = ({ children }) => {
   return (
     <>
       <Header />
-      <div className='flex'>
+      <div className='flex relative top-8'>
         <div
           style={{ width: isOpen ? '200px' : '50px' }}
-          className='sidebar bg-white text-black h-screen transition-all duration-500'>
+          className='sidebar fixed bg-white text-black h-screen transition-all duration-500'>
           <div className='top_section flex items-center p-4'>
             <div
               style={{ marginLeft: isOpen ? '50px' : '0px' }}

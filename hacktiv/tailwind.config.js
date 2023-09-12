@@ -8,11 +8,14 @@ export default {
       current: 'currentColor',
       'primary': '#ffffff',
       'secondary' : '#0a0a0a',
-      'teriary': '#5c5c5c',
+      'secondary-bg' : 'rgba(47, 47, 47, .35)',
+      'tertiary': '#5c5c5c',
       'accent': '#ffd02b',
       'warning': '#f75151',
       'success': '#60d238',
       'accent-a' : '#ffda55',
+      'accent-bg-a' : 'rgba(255, 218, 85, .75)',
+      'accent-bg-b' : 'rgba(255, 218, 85, .5)',
       'accent-b' : '#f4ce47',
       'accent-c' : '#f8ba40',
       'accent-d' : '#b98219',
@@ -25,10 +28,23 @@ export default {
     },
     extend: {
       fontFamily: {
-        'inter': ['Inter', 'sans-serif']
+        'inter': ['Inter', 'sans-serif'],
+        'doppio': ['Doppio One', 'sans-serif']
       },
     },
+    width: {
+      'full': '100%',
+      '1/4': '25%',
+    },
+    screens: {
+      'sm': '640px',   
+      'md': '768px',   
+      'lg': '1024px',  
+      'xl': '1280px', 
+      '2xl': '1440px', 
+    },
   },
-  plugins: [],
+  plugins: [
+  ],
 }
 
