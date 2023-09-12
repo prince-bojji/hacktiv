@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Jehan Batang",
+      "email": "johanten22@gmail.com",
+      "password": "johanten"
+    },
+    {
+      "id": 2,
+      "name": "hatdog",
+      "email": "hatdog.gmail.com",
+      "password": "hatdog"
+    }
+  ]
+}

@@ -43,7 +43,7 @@ function Login({ onLogin }) {
             className="bg-secondary text-primary text-lg py-2 px-4 rounded mt-4"
             onClick={handleLogin} 
           >
-            Proceed
+            Login
           </button>
         </div>
       </div>
