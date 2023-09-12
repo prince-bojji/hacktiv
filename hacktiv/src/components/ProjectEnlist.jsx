@@ -138,8 +138,8 @@ function ProjectEnlisting(props) {
 		<div className={"bg-primary dark:bg-tertiary-b border rounded-b p-1 xs:text-xs md:text-lg xl:text-lg min-[320px]:w-[100%] md:w-[100%] xl:w-[100%] h-max shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100"}>
         <div class="relative">
 		{/* <div class="overflow-x-auto overflow-y-hidden"> */}
-    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-  <thead className="border-b text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table className="w-full text-sm text-left text-tertiary-a dark:text-secondary-a">
+  <thead className="border-b text-xs text-secondary uppercase bg-primary dark:bg-secondary dark:text-secondary">
     <tr>
       <th scope="col" className="px-6 py-3">
         Project name
@@ -163,11 +163,11 @@ function ProjectEnlisting(props) {
     {projectData.map((project, index) => (
       <tr
         key={index}
-        className="bg-primary-b border-t dark:bg-tertiary-b dark:border-tertiary-c"
+        className="bg-primary border-t dark:bg-tertiary-b dark:border-tertiary-c"
       >
         <th
           scope="row"
-          className="px-6 py-4 font-medium text-secondarywhitespace-nowrap dark:text-primary"
+          className="px-6 py-4 font-medium text-secondary whitespace-nowrap"
         >
           {project.project_name}
         </th>
@@ -184,7 +184,7 @@ function ProjectEnlisting(props) {
             <div>
               <button
                 id="menu-button"
-                className="bg-primary-b flex items-center space-x-1 p-2 text-tertiary-a hover:text-secondary  focus:outline-none"
+                className="bg-primary flex items-center space-x-1 p-2 text-tertiary-a hover:text-secondary  focus:outline-none"
                 onClick={() => toggleDropdown(index)}
               >
                 <svg
@@ -203,7 +203,7 @@ function ProjectEnlisting(props) {
               <div
                 ref={dropdownRef}
                 id="menu"
-                className="absolute top-0 right-0 mt-10 w-30 py-2 bg-primary border border-gray-300 rounded shadow-lg z-50"
+                className="absolute top-0 right-0 mt-10 w-30 py-2 bg-primary border border-tertiary-b rounded shadow-lg z-50"
               >
                 <a
                   href="#"
