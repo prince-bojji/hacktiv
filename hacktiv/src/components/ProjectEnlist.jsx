@@ -135,11 +135,11 @@ function ProjectEnlisting(props) {
 		<div className={"bg-accent rounded-t p-4 border border-secondary border-solid border-b-tertiary-a min-[320px]:text-md lg:text-md font-bold pb-4 mt-7 shadow-[0_0_1px_1px_rgba(0,0,0,0.25)]"}>
 			Project
 		</div>
-		<div className={"bg-primary dark:bg-tertiary-b border rounded-b p-1 xs:text-xs md:text-lg xl:text-lg min-[320px]:w-[100%] md:w-[100%] xl:w-[100%] h-max shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100"}>
+		<div className={"bg-primary border rounded-b p-1 xs:text-xs md:text-lg xl:text-lg min-[320px]:w-[100%] md:w-[100%] xl:w-[100%] h-max shadow-[0_0_2px_1px_rgba(0,0,0,0.25)] ease-in duration-100"}>
         <div class="relative">
 		{/* <div class="overflow-x-auto overflow-y-hidden"> */}
-    <table className="w-full text-sm text-left text-tertiary-a dark:text-secondary-a">
-  <thead className="border-b text-xs text-secondary uppercase bg-primary dark:bg-secondary dark:text-secondary">
+    <table className="w-full text-sm text-left text-tertiary-a">
+  <thead className="border-b text-xs text-secondary uppercase bg-primary">
     <tr>
       <th scope="col" className="px-6 py-3">
         Project name
@@ -163,7 +163,7 @@ function ProjectEnlisting(props) {
     {projectData.map((project, index) => (
       <tr
         key={index}
-        className="bg-primary border-t dark:bg-tertiary-b dark:border-tertiary-c"
+        className="bg-primary border-t "
       >
         <th
           scope="row"
