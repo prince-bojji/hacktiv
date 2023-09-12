@@ -28,8 +28,9 @@ function ProjectTracker() {
                         className="bg-accent px-7 py-2 rounded p-5 text-secondary-a [320px]:text-md lg:text-lg xl:font-normal mb-4 float-right mr-5"
                         onClick={onTimeLogs}>Time Logs
                     </button>
+                    <p className="text-lg font-bold">Project Tracker</p>
                     <div className="w-full">
-                        <div className="mt-2 text-xl flex justify-between w-[20%] h-[40px]">
+                        <div className="mt-5 text-xl flex justify-between w-[20%] h-[40px]">
                             <div className="flex items-center relative">
                                 <i className="fa-solid fa-magnifying-glass absolute ml-3 fa-sm"></i>
                                 <input type="search" name="search" className="pl-8 bg-accent-a rounded-lg placeholder-secondary border-tertiary-b border border-solid shadow-inner text-sm h-full w-[68%] md:w-[80%] xl:w-[90%] pr-10"
