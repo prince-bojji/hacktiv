@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import TimeLogs from './TimeLogs';
+import { projectData } from './ProjectEnlist';
 
 function ProjectTracker() {
     const [timerStart, setTimerStart] = useState(false);
@@ -15,6 +16,8 @@ function ProjectTracker() {
     const onTimerStart = () => {
         setTimerStart(!timerStart);
     }
+
+    const ongoingProjects = projectData.filter(project => project.project_status === 'Ongoing');
 
     return (
         <>
@@ -51,57 +54,27 @@ function ProjectTracker() {
                                 <p className=''>Total time rendered</p>
                             </div>
 
-                            {/*Only ongoing projects should be displayed here. Use the database for projects in the ProjectEnlist component.*/}
-                            {/*Filter the database so that you won't have to repeat the code for the condition for the timer buttons*/}
-                            <div className='flex p-2 px-5 min-[320px]:text-sm items-center sm:text-lg'>
-                                <p className='min-[320px]:w-[39%] xl:w-[43%]'>test</p>
-                                <p className='min-[320px]:w-[40%] lg:ml-[27px]'>Ongoing</p>
-                                {!timerStart ? (
-                                    <button className="mr-2" onClick={onTimerStart} style={{ color: '#ffda55' }}>
-                                        <i className="fa-solid fa-play fa-lg"></i>
-                                    </button>
-                                ) : (
-                                    <button className="mr-2" onClick={onTimerStart} style={{ color: '#ffda55' }}>
-                                        <i className="fa-solid fa-circle-pause fa-lg"></i>
-                                    </button>
-                                )}
-                                {/*Replace p value with functioning timer*/}
-                                {/*This task is meant for Cedrick*/}
-                                <p>00:00:00</p>
-                            </div>
-                            <hr />
-
-                            <div className='flex p-2 px-5 min-[320px]:text-sm items-center sm:text-lg'>
-                                <p className='min-[320px]:w-[39%] xl:w-[43%]'>test1</p>
-                                <p className='min-[320px]:w-[40%] lg:ml-[27px]'>Ongoing</p>
-                                {!timerStart ? (
-                                    <button className="mr-2" onClick={onTimerStart} style={{ color: '#ffda55' }}>
-                                        <i className="fa-solid fa-play fa-lg"></i>
-                                    </button>
-                                ) : (
-                                    <button className="mr-2" onClick={onTimerStart} style={{ color: '#ffda55' }}>
-                                        <i className="fa-solid fa-circle-pause fa-lg"></i>
-                                    </button>
-                                )}
-                                {/*Replace p value with functioning timer*/}
-                                <p>00:00:00</p>
-                            </div>
-                            <hr />
-                            <div className='flex p-2 px-5 min-[320px]:text-sm items-center sm:text-lg'>
-                                <p className='min-[320px]:w-[39%] xl:w-[43%]'>test4</p>
-                                <p className='min-[320px]:w-[40%] lg:ml-[27px]'>Ongoing</p>
-                                {!timerStart ? (
-                                    <button className="mr-2" onClick={onTimerStart} style={{ color: '#ffda55' }}>
-                                        <i className="fa-solid fa-play fa-lg"></i>
-                                    </button>
-                                ) : (
-                                    <button className="mr-2" onClick={onTimerStart} style={{ color: '#ffda55' }}>
-                                        <i className="fa-solid fa-circle-pause fa-lg"></i>
-                                    </button>
-                                )}
-                                {/*Replace p value with functioning timer*/}
-                                <p>00:00:00</p>
-                            </div>
+                            {ongoingProjects.map((project, index) =>
+                                <>
+                                    <div className='flex p-2 px-5 min-[320px]:text-sm items-center sm:text-lg' key={index}>
+                                        <p className='min-[320px]:w-[39%] xl:w-[43%]'>{project.project_name}</p>
+                                        <p className='min-[320px]:w-[40%] lg:ml-[27px]'>{project.project_status}</p>
+                                        {!timerStart ? (
+                                            <button className="mr-2" onClick={onTimerStart} style={{ color: '#ffda55' }}>
+                                                <i className="fa-solid fa-play fa-lg"></i>
+                                            </button>
+                                        ) : (
+                                            <button className="mr-2" onClick={onTimerStart} style={{ color: '#ffda55' }}>
+                                                <i className="fa-solid fa-circle-pause fa-lg"></i>
+                                            </button>
+                                        )}
+                                        {/*Replace p value with functioning timer*/}
+                                        {/*This task is meant for Cedrick*/}
+                                        <p>00:00:00</p>
+                                    </div>
+                                    {index < ongoingProjects.length - 1 && <hr />}
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
