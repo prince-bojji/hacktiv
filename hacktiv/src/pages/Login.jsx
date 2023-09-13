@@ -11,6 +11,8 @@ function Login({ onLogin }) {
   const [error, setError] = useState(null);
   const { setUserEmail } = useUserContext();
 
+  const data = useNavigate();
+
   const handleLogin = () => {
     const { email, password } = formData;
     const user = jsonData.users.find(
