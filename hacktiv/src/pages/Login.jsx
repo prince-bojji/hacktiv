@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 function Login({ onLogin }) {
   const navigate = useNavigate();
 
+  const data = useNavigate();
+
   const handleLogin = () => {
     onLogin();
     navigate('/Dashboard');
