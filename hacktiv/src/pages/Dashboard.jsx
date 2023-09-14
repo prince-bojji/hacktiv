@@ -11,9 +11,6 @@ import {
   FaRegHourglass,
   FaRegMoon,
   FaRegCalendarTimes,
-  FaChevronLeft,
-  FaChevronRight,
-  FaRegWindowMaximize,
 } from 'react-icons/fa';
 
 function Dashboard() {
