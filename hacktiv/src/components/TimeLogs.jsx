@@ -8,31 +8,31 @@ function TimeLogs() {
     const date = new Date();
     const workDays = [
         {
-            day: 'September 6, 2023',
+            day: 'September 11, 2023',
             previous_time_in: '8:02',
             previous_time_out: '17:00',
             work_hours: '08:58'
         },
         {
-            day: 'September 7, 2023',
+            day: 'September 12, 2023',
             previous_time_in: '8:00',
             previous_time_out: '17:04',
             work_hours: '08:56'
         },
         {
-            day: 'September 8, 2023',
+            day: 'September 13, 2023',
             previous_time_in: '8:00',
             previous_time_out: '17:00',
             work_hours: '09:00'
         },
         {
-            day: 'September 11, 2023',
+            day: 'September 14, 2023',
             previous_time_in: '8:04',
             previous_time_out: '17:01',
             work_hours: '08:57'
         },
         {
-            day: 'September 12, 2023',
+            day: 'September 15, 2023',
             previous_time_in: '8:01',
             previous_time_out: '17:00',
             work_hours: '08:59'
@@ -45,27 +45,52 @@ function TimeLogs() {
         },
     ];
 
-    const [timeIn, setTimeIn] = useState('-');
-    const [timeOut, setTimeOut] = useState('-');
     const [timerStart, setTimerStart] = useState(false);
+    const [businessDays, setBusinessDays] = useState(workDays);
 
     // Add the functionality for the timer to start if timerStart is set to true
     // and to stop if timerStart is set to false
     // This task is meant for Cedrick 
     const onTimerStart = () => {
-        const date = new Date();
-        let minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
-
-        { timeIn === '-' && setTimeIn(date.getHours() + ":" + minutes) }
         setTimerStart(true);
     }
 
     const onTimerStop = () => {
+        setTimerStart(false);
+    }
+
+    const onTimeIn = () => {
         const date = new Date();
         let minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+        let today = monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
 
-        { timeOut === '-' && setTimeOut(date.getHours() + ":" + minutes) }
-        setTimerStart(false);
+        setBusinessDays(businessDays.map(day => {
+            if (day.day === today && day.previous_time_in.length === 1) {
+                return {
+                    ...day,
+                    previous_time_in: date.getHours() + ':' + minutes
+                };
+            } else {
+                return day;
+            }
+        }))
+    }
+
+    const onTimeOut = () => {
+        const date = new Date();
+        let minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+        let today = monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+
+        setBusinessDays(businessDays.map(day => {
+            if (day.day === today && day.previous_time_out.length === 1) {
+                return {
+                    ...day,
+                    previous_time_out: date.getHours() + ':' + minutes
+                };
+            } else {
+                return day;
+            }
+        }))
     }
 
     return (
@@ -75,13 +100,19 @@ function TimeLogs() {
                 {!timerStart ? (
                     <>
                         <i className="fa-solid fa-stopwatch absolute ml-3"></i>
-                        <button onClick={onTimerStart} className="bg-accent-a font-semibold h-8 px-2 pr-3 pl-8 text-lg border border-secondary-a">
+                        <button onClick={() => {
+                            onTimeIn(),
+                                onTimerStart()
+                        }} className="bg-accent-a font-semibold h-8 px-2 pr-3 pl-8 text-lg border border-secondary-a">
                             START</button>
                     </>
                 ) : (
                     <>
                         <i className="fa-solid fa-stopwatch absolute ml-3"></i>
-                        <button onClick={onTimerStop} className="bg-accent-a font-semibold h-8 px-2 pr-3 pl-8 text-lg border border-secondary-a">
+                        <button onClick={() => {
+                            onTimeOut(),
+                                onTimerStop()
+                        }} className="bg-accent-a font-semibold h-8 px-2 pr-3 pl-8 text-lg border border-secondary-a">
                             STOP</button>
                     </>
                 )}
@@ -98,22 +129,17 @@ function TimeLogs() {
                             <p className="w-[25%] pl-[50px] ">Time in</p>
                             <p className="w-[25%] min-[320px]:pl-[35px] sm:pl-[50px]">Time out</p>
                             <p className="w-[25%] min-[320px]:pl-[20px] sm:pl-[50px]">Work hours</p>
-
                         </div>
 
-                        {workDays.map((workDay, index) =>
+                        {businessDays.map((workDay, index) =>
                             <>
                                 <div className='flex py-2 justify-between items-center min-[320px]:text-sm sm:text-lg' key={index}>
                                     <p className='w-[25%] pl-5'>{workDay.day}</p>
-                                    {workDay.previous_time_in !== '-' ? (
-                                        <p className='w-[25%] pl-[50px]'>{workDay.previous_time_in}</p>
-                                    ) : <p className='w-[25%] pl-[50px]'>{timeIn}</p>}
-                                    {workDay.previous_time_out !== '-' ? (
-                                        <p className='w-[25%] min-[320px]:pl-[35px] sm:pl-[50px]'>{workDay.previous_time_out}</p>
-                                    ) : <p className='w-[25%] min-[320px]:pl-[35px] sm:pl-[50px]'>{timeOut}</p>}
+                                    <p className='w-[25%] pl-[50px]'>{workDay.previous_time_in}</p>
+                                    <p className='w-[25%] min-[320px]:pl-[35px] sm:pl-[50px]'>{workDay.previous_time_out}</p>
                                     <p className='w-[25%] min-[320px]:pl-[20px] sm:pl-[50px]'>{workDay.work_hours}</p>
                                 </div>
-                                {index < workDays.length - 1 && <hr />}
+                                {index < businessDays.length - 1 && <hr />}
                             </>
                         )}
                     </div>
