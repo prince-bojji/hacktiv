@@ -11,6 +11,24 @@
       "name": "hatdog",
       "email": "hatdog.gmail.com",
       "password": "hatdog"
+    },
+    {
+      "name": "dasdsadas",
+      "email": "agapsyon@gmail.com",
+      "password": "group2",
+      "id": 3
+    },
+    {
+      "name": "fdsgdfg",
+      "email": "sample@gmail.com",
+      "password": "sample",
+      "id": 4
+    },
+    {
+      "name": "test",
+      "email": "test@gmail.com",
+      "password": "test",
+      "id": 5
     }
   ]
 }
