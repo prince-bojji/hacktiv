@@ -4,9 +4,6 @@ function FileSystem() {
     const [isPopupVisible, setPopupVisible] = useState(false);
     const [files, setFiles] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const [subject, setSubject] = useState('');
-    const [to, setTo] = useState('');
-    const [message, setMessage] = useState('');
 
     const togglePopup = () => {
         setPopupVisible(!isPopupVisible);
@@ -30,8 +27,18 @@ function FileSystem() {
         setSearchText(e.target.value);
     };
 
+    const handleFileDrop = (e) => {
+        e.preventDefault();
+        const droppedFiles = [...e.dataTransfer.files];
+        addFile(...droppedFiles);
+    };
+
+    const preventDefault = (e) => {
+        e.preventDefault();
+    };
+
     return (
-        <div className=" bg-primary-b flex flex-col justify-center items-center rounded-lg  mt-1 mx-4">
+        <div className="bg-primary-b flex flex-col justify-center items-center rounded-lg">
             <div className="bg-primary-b rounded-lg p-2 shadow-lg relative z-50">
                 <div className="bg-accent-b rounded-lg p-2 w-full md:w-96">
                     <div className="relative flex items-center">
@@ -105,6 +112,7 @@ function FileSystem() {
                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                         />
                     </svg>
+                    
                     File
                 </button>
             </div>
@@ -112,7 +120,11 @@ function FileSystem() {
             {isPopupVisible && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                     <div className="absolute inset-0 bg-primary opacity-100"></div>
-                    <div className="bg-primary p-4 rounded-lg shadow-lg z-10 w-full md:w-96">
+                    <div
+                        className="bg-primary p-4 rounded-lg shadow-lg z-10 w-full md:w-96"
+                        onDrop={handleFileDrop}
+                        onDragOver={preventDefault}
+                    >
                         <table className="w-full">
                             <thead>
                                 <tr>
@@ -125,10 +137,10 @@ function FileSystem() {
                             <tbody>
                                 {files.map((file, index) => (
                                     <tr key={index}>
-                                        <td className="text-secondary">{file.fileName}</td>
+                                        <td className="text-secondary">{file.name}</td>
                                         <td className="text-secondary">{file.type}</td>
-                                        <td className="text-secondary">{file.size}</td>
-                                        <td className="text-secondary">{file.date}</td>
+                                        <td className="text-secondary">{file.size} bytes</td>
+                                        <td className="text-secondary">{new Date(file.lastModified).toLocaleDateString()}</td>
                                         <td className="text-secondary">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -150,23 +162,34 @@ function FileSystem() {
                                 ))}
                             </tbody>
                         </table>
-                        <br>
-                        </br>
-                        <div className="text-right">
+
+                        <div className="border-dashed border-2 border-accent-c rounded-lg p-4 mt-4">
+                            <p className="text-secondary">Drag and drop files here to attach</p>
+                        </div>
+
+                        <div className="flex justify-center mt-4">
                             <button
-                                className="bg-accent-b hover:bg-accent-a text-primary font-bold py-2 px-4 rounded-full"
-                                onClick={closePopup}
-                            >
-                                Delete
-                            </button>
-                            <button
-                                className="bg-accent-c hover:bg-accent-a text-primary font-bold py-2 px-4 rounded-full ml-2"
+                                className="bg-accent-c hover:bg-accent-a text-primary font-bold py-2 px-4 rounded-full mr-2"
                                 onClick={() => {
                                     closePopup();
                                 }}
                             >
-                                Send
+                                Close
                             </button>
+                            <label
+                                htmlFor="fileInput"
+                                className="bg-accent-c hover:bg-accent-a text-primary font-bold py-2 px-4 rounded-full cursor-pointer"
+                            >
+                                Upload File
+                                <input
+                                    type="file"
+                                    id="fileInput"
+                                    className="hidden"
+                                    onChange={(e) => {
+                                        addFile(e.target.files[0]);
+                                    }}
+                                />
+                            </label>
                         </div>
                     </div>
                 </div>

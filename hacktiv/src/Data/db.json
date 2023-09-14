@@ -42,5 +42,15 @@
       "password": "+SQ!rLKGy3E4af6",
       "id": 7
     }
+  ],
+
+  "2023-09-14": [
+    {
+      "email": "johanten22@gmail.com",
+      "time_in": "2023-09-14T09:00:00",
+      "time_out": "2023-09-14T17:00:00",
+      "current_project": "Table for Juan",
+      "project_participated": 2
+    }
   ]
 }

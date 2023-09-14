@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { useNavigate } from 'react-router-dom';
 
 import 'chart.js/auto';
 
@@ -16,6 +17,12 @@ import {
 } from 'react-icons/fa';
 
 function Dashboard() {
+  const navigate = useNavigate();
+
+  const view = () => {
+    navigate('/TimeTracker');
+  }
+
   // Add here calculation for the current time starting the time-in from the time tracker
   let currentSession = '4:53';
 
@@ -29,27 +36,15 @@ function Dashboard() {
   const projects = [
     {
       id: 1,
-      name: 'Time-in/Time-out',
-      start: 'August 29, 2023',
-      end: '',
+      name: 'TableforJuan',
+      status: 'Ongoing',
+      deadline: 'September 27, 2023',
     },
     {
       id: 2,
-      name: 'El-Paraiso Website',
-      start: 'August 09, 2023',
-      end: 'August 27, 2023',
-    },
-    {
-      id: 3,
-      name: 'SHOT POS Terminal',
-      start: 'July 23, 2023',
-      end: 'August 07, 2023',
-    },
-    {
-      id: 4,
-      name: 'Crochet Corner Blogsite',
-      start: 'June 30, 2023',
-      end: 'July 20, 2023',
+      name: 'Agapsyon',
+      status: 'Ongoing',
+      deadline: 'September 27, 2023',
     },
   ];
 
@@ -66,12 +61,15 @@ function Dashboard() {
   ];
   const currentDate = new Date();
 
-  // Calculate the dates for the current week
+  // Calculate the dates for the current week in the desired format
   const dates = [];
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
   for (let i = 0; i < 6; i++) {
     const date = new Date(currentDate);
     date.setDate(currentDate.getDate() + i);
-    dates.push(date.toDateString());
+    const formattedDate = date.toLocaleDateString(undefined, options);
+    dates.push(formattedDate);
   }
 
   function calculateTotalDuration(projects) {
@@ -143,21 +141,11 @@ function Dashboard() {
         {/* WEEKLY REPORT */}
         <div className='lg:w-[48%] lg:h-[40%] md:w-full mb-3 border border-tertiary-a rounded-2xl'>
           <div className='flex justify-between rounded-tl-2xl rounded-tr-2xl p-3 py-2 bg-accent-a'>
-            <p className='font-bold text-teriary text-[16px]'>Weekly Report</p>
-            <div className='flex items-center'>
-              <div className='flex justify-center items-center w-[24px] h-[24px] border-tertiary border-t border-l border-b rounded-tl-lg rounded-bl-lg'>
-                {/* CLICKABLE, MOVES PER WEEK */}
-                <FaChevronLeft className='text-primary fa-sm' />
-              </div>
-              <div className='flex justify-center items-center w-[24px] h-[24px] border border-tertiary'>
-                {/* CLICKABLE, SHOWS THE WEEK, THE GIVEN DAY IS INCLUDED */}
-                <FaRegWindowMaximize className='text-primary fa-sm' />
-              </div>
-              <div className='flex justify-center items-center w-[24px] h-[24px] border-tertiary border-t border-r border-b rounded-tr-lg rounded-br-lg'>
-                {/* CLICKABLE, MOVES PER WEEK */}
-                <FaChevronRight className='text-primary fa-sm' />
-              </div>
-            </div>
+            <p className='font-bold text-teriary text-[16px]'>Attendance Report</p>
+            <button className='flex items-center text-[#002db3] bg-transparent border-none outline-none cursor-pointer'
+            onClick={view}>
+              View
+            </button>
           </div>
           <div className='px-5 py-2'>
             <table className='w-full'>
@@ -167,13 +155,13 @@ function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {daysOfWeek.map((day, index) => (
+                {dates.map((formattedDate, index) => (
                   <tr
-                    key={day}
+                    key={formattedDate}
                     className={`${
                       index !== dates.length - 1 ? 'border-b' : ''
                     }`}>
-                    <td className='py-2 px-1'>{dates[index]}</td>
+                    <td className='py-2 px-1'>{formattedDate}</td>
                   </tr>
                 ))}
               </tbody>
@@ -184,9 +172,7 @@ function Dashboard() {
         {/* OVERVIEW */}
         <div className='lg:w-[48%] mb-3 border border-tertiary rounded-2xl'>
           <div className='rounded-tl-2xl rounded-tr-2xl p-5 py-2 bg-accent-a'>
-            <div className='font-bold text-teriary text-[16px]'>
-              Employment Overview
-            </div>
+            <div className='font-bold text-teriary text-[16px]'>Overview</div>
           </div>
 
           <div className='px-5 py-2'>
@@ -230,9 +216,9 @@ function Dashboard() {
             <table className='w-full'>
               <thead>
                 <tr className='text-left'>
-                  <th>Name</th>
-                  <th>Start</th>
-                  <th>End</th>
+                  <th>Project Name</th>
+                  <th>Status</th>
+                  <th>Deadline</th>
                 </tr>
               </thead>
               <tbody className=''>
@@ -243,8 +229,8 @@ function Dashboard() {
                       index !== projects.length - 1 ? 'border-b' : ''
                     }`}>
                     <td className='py-2 px-1'>{project.name}</td>
-                    <td className='py-2 px-1'>{project.start}</td>
-                    <td className='py-2 px-1'>{project.end}</td>
+                    <td className='py-2 px-1'>{project.status}</td>
+                    <td className='py-2 px-1'>{project.deadline}</td>
                   </tr>
                 ))}
               </tbody>
