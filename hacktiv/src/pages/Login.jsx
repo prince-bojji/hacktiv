@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import jsonData from '../data/db.json';
 import { useUserContext } from '/src/components/UserContext';
 
-//  json-server --watch src/data/db.json --port 8000
+//  json-server --watch src/data/db.json --port 3000
 
 function Login({ onLogin }) {
   const navigate = useNavigate();

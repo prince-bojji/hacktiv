@@ -29,6 +29,18 @@
       "email": "test@gmail.com",
       "password": "test",
       "id": 5
+    },
+    {
+      "name": "test2",
+      "email": "test@gmail.com",
+      "password": "test2",
+      "id": 6
+    },
+    {
+      "name": "dsadasd",
+      "email": "dsadsada@gmail.com",
+      "password": "+SQ!rLKGy3E4af6",
+      "id": 7
     }
   ]
 }
