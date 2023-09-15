@@ -1,44 +1,37 @@
 import React, { useState } from 'react';
 
 function TimeLogs() {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-
     const date = new Date();
+    const dateFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    const today = date.toLocaleDateString(undefined, dateFormatOptions);
+
     const workDays = [
         {
-            day: 'September 11, 2023',
+            day: '09/11/2023',
             previous_time_in: '8:02',
             previous_time_out: '17:00',
             work_hours: '08:58'
         },
         {
-            day: 'September 12, 2023',
+            day: '09/12/2023',
             previous_time_in: '8:00',
             previous_time_out: '17:04',
             work_hours: '08:56'
         },
         {
-            day: 'September 13, 2023',
+            day: '09/13/2023',
             previous_time_in: '8:00',
             previous_time_out: '17:00',
             work_hours: '09:00'
         },
         {
-            day: 'September 14, 2023',
+            day: '09/14/2023',
             previous_time_in: '8:04',
             previous_time_out: '17:01',
             work_hours: '08:57'
         },
         {
-            day: 'September 15, 2023',
-            previous_time_in: '8:01',
-            previous_time_out: '17:00',
-            work_hours: '08:59'
-        },
-        {
-            day: monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear(),
+            day: today,
             previous_time_in: '-',
             previous_time_out: '-',
             work_hours: '-'
@@ -62,7 +55,7 @@ function TimeLogs() {
     const onTimeIn = () => {
         const date = new Date();
         let minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
-        let today = monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+        let today = date.toLocaleDateString(undefined, dateFormatOptions);
 
         setBusinessDays(businessDays.map(day => {
             if (day.day === today && day.previous_time_in.length === 1) {
@@ -79,7 +72,7 @@ function TimeLogs() {
     const onTimeOut = () => {
         const date = new Date();
         let minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
-        let today = monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+        let today = date.toLocaleDateString(undefined, dateFormatOptions);
 
         setBusinessDays(businessDays.map(day => {
             if (day.day === today && day.previous_time_out.length === 1) {

@@ -4,53 +4,70 @@
       "id": 1,
       "name": "Jehan Batang",
       "email": "johanten22@gmail.com",
-      "password": "johanten"
+      "password": "johanten",
+      "current_project": "Table for Juan",
+      "projects_participated": 2,
+      "time_entries": [
+        {
+          "date": "09/11/2023",
+          "time_in": "8:00AM",
+          "time_out": "6:00PM",
+          "overtime_hours": 1.0,
+          "total_clock_hours": 9.0
+        },
+        {
+          "date": "09/12/2023",
+          "time_in": "8:00AM",
+          "time_out": "6:00PM",
+          "overtime_hours": 1.0,
+          "total_clock_hours": 9.0
+        },
+        {
+          "date": "09/13/2023",
+          "time_in": "8:00AM",
+          "time_out": "6:00PM",
+          "overtime_hours": 1.0,
+          "total_clock_hours": 9.0
+        },
+        {
+          "date": "09/14/2023",
+          "time_in": "8:00AM",
+          "time_out": "6:00PM",
+          "overtime_hours": 1.0,
+          "total_clock_hours": 9.0
+        },
+        {
+          "date": "09/15/2023",
+          "time_in": "8:00AM",
+          "time_out": "7:00PM",
+          "overtime_hours": 2.0,
+          "total_clock_hours": 10.0
+        }
+      ]
     },
     {
       "id": 2,
-      "name": "hatdog",
-      "email": "hatdog.gmail.com",
-      "password": "hatdog"
-    },
-    {
-      "name": "dasdsadas",
-      "email": "agapsyon@gmail.com",
-      "password": "group2",
-      "id": 3
-    },
-    {
-      "name": "fdsgdfg",
-      "email": "sample@gmail.com",
-      "password": "sample",
-      "id": 4
-    },
-    {
-      "name": "test",
-      "email": "test@gmail.com",
-      "password": "test",
-      "id": 5
-    },
-    {
-      "name": "test2",
-      "email": "test@gmail.com",
-      "password": "test2",
-      "id": 6
-    },
-    {
-      "name": "dsadasd",
-      "email": "dsadsada@gmail.com",
-      "password": "+SQ!rLKGy3E4af6",
-      "id": 7
-    }
-  ],
-
-  "2023-09-14": [
-    {
-      "email": "johanten22@gmail.com",
-      "time_in": "2023-09-14T09:00:00",
-      "time_out": "2023-09-14T17:00:00",
+      "name": "Jehan Batang2",
+      "email": "johanten222@gmail.com",
+      "password": "johanten",
       "current_project": "Table for Juan",
-      "project_participated": 2
+      "projects_participated": 2,
+      "time_entries": [
+        {
+          "date": "09/14/2023",
+          "time_in": "8:00AM",
+          "time_out": "6:00PM",
+          "overtime_hours": 1.0,
+          "total_clock_hours": 9.0
+        },
+        {
+          "date": "09/15/2023",
+          "time_in": "8:00AM",
+          "time_out": "7:00AM",
+          "overtime_hours": 2.0,
+          "total_clock_hours": 10.0
+        }
+      ]
     }
   ]
 }
