@@ -42,6 +42,13 @@
           "time_out": "7:00PM",
           "overtime_hours": 2.0,
           "total_clock_hours": 10.0
+        },
+        {
+          "date": "09/16/2023",
+          "time_in": "8:00AM",
+          "time_out": "7:00PM",
+          "overtime_hours": 2.0,
+          "total_clock_hours": 10.0
         }
       ]
     },
