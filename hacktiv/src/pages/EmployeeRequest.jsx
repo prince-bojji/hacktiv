@@ -1,33 +1,36 @@
 import React, { useState } from 'react';
+import { Table } from '../components/Table';
+import { Modal } from '../components/Modal';
 
 function EmployeeRequest() {
-    const [isPopupVisible, setPopupVisible] = useState(false);
-    const [files, setFiles] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const [subject, setSubject] = useState('');
-    const [to, setTo] = useState('');
-    const [message, setMessage] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const [rows, setRows] = useState([
+        { subject: "Frontend Design", recipient: "John Smith", message: "Finish the design" },
+        { subject: "Backend Code", recipient: "Vincent Fabron", message: "Edit the component" },
+        { subject: "Github Repository", recipient: "Juan Dela Cruz", message: "Update the repository" },
+    ]);
+    
+    const [rowToEdit, setRowToEdit] = useState(null);
 
-    const togglePopup = () => {
-        setPopupVisible(!isPopupVisible);
+    const handleDeleteRow = (targetIndex) => {
+        setRows(rows.filter((_, idx) => idx !== targetIndex));
     };
 
-    const closePopup = () => {
-        setPopupVisible(false);
+    const handleEditRow = (idx) => {
+        setRowToEdit(idx);
+        setModalOpen(true);
     };
 
-    const addFile = (file) => {
-        setFiles([...files, file]);
-    };
-
-    const removeFile = (index) => {
-        const updatedFiles = [...files];
-        updatedFiles.splice(index, 1);
-        setFiles(updatedFiles);
-    };
-
-    const handleSearch = (e) => {
-        setSearchText(e.target.value);
+    const handleSubmit = (newRow) => {
+        rowToEdit === null
+            ? setRows([...rows, newRow])
+            : setRows(
+                rows.map((currRow, idx) => {
+                    if (idx !== rowToEdit) return currRow;
+                    return newRow;
+                })
+            );
     };
 
     return (
@@ -51,7 +54,6 @@ function EmployeeRequest() {
                                 />
                             </svg>
                         </div>
-
                         <div className="flex-grow">
                             <input
                                 className="h-full w-full outline-none text-sm text-secondary 700 pr-2 pl-4 bg-transparent bg-accent-b"
@@ -59,117 +61,37 @@ function EmployeeRequest() {
                                 id="search"
                                 placeholder="Search Request..."
                                 value={searchText}
-                                onChange={handleSearch}
+                                onChange={(e) => setSearchText(e.target.value)}
                             />
                         </div>
                     </div>
                 </div>
             </div>
 
-            {files.length === 0 && (
-                <div className="flex flex-col justify-center items-center h-64 mt-6 w-[calc(100% - 2rem)]">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-20 text-accent-b inline-block"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14-2V5a2 2 0 00-2-2h-5.586a1 1 0 00-.707.293l-2.586 2.586a1 1 0 00-.293.707V19m4 0h-4"
-                        />
-                    </svg>
-                    <p className="text-secondary w-96 text-center mt-2">No Request!</p>
-                </div>
-            )}
-
-            <div className="flex justify-center mt-4">
-                <button
-                    className="bg-accent-b hover:bg-accent-a text-white font-bold py-2 px-4 rounded-full flex items-center"
-                    onClick={togglePopup}
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                        />
-                    </svg>
-                    Request
-                </button>
+            <div className="max-h-[calc(100vh-300px)] overflow-y-auto w-full">
+                <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
             </div>
-
-            {isPopupVisible && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
-                    <div className="absolute inset-0 bg-primary opacity-100"></div>
-                    <div className="bg-primary p-4 rounded-lg shadow-lg z-10 w-full md:w-96">
-                        <div className="mb-4">
-                            <label className="block text-secondary text-sm font-bold mb-2">
-                                Subject:
-                            </label>
-                            <input
-                                type="text"
-                                className="appearance-none border rounded w-full py-2 px-3 text-secondary leading-tight focus:outline-none focus:shadow-outline"
-                                placeholder="Enter subject"
-                                value={subject}
-                                onChange={(e) => setSubject(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-secondary text-sm font-bold mb-2">
-                                To:
-                            </label>
-                            <input
-                                type="text"
-                                className="appearance-none border rounded w-full py-2 px-3 text-secondary leading-tight focus:outline-none focus:shadow-outline"
-                                placeholder="Enter recipient(s)"
-                                value={to}
-                                onChange={(e) => setTo(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-secondary text-sm font-bold mb-2">
-                                Message:
-                            </label>
-                            <textarea
-                                className="appearance-none border rounded w-full py-2 px-3 text-secondary leading-tight focus:outline-none focus:shadow-outline"
-                                rows="4"
-                                placeholder="Enter your message"
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                            />
-                        </div>
-                        <div className="text-right">
-                            <button
-                                className="bg-accent-b hover:bg-accent-a text-primary font-bold py-2 px-4 rounded-full"
-                                onClick={closePopup}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                className="bg-accent-c hover:bg-accent-a text-primary font-bold py-2 px-4 rounded-full ml-2"
-                                onClick={() => {
-                                    closePopup();
-                                }}
-                            >
-                                Send
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            
+            <button
+                className="bg-accent-b hover:bg-accent-a text-white font-bold py-2 px-4 rounded-full flex items-center"
+                onClick={() => setModalOpen(true)}
+            >
+                + Request
+            </button>
+            
+            {modalOpen && (
+                <Modal
+                    closeModal={() => {
+                        setModalOpen(false);
+                        setRowToEdit(null);
+                    }}
+                    onSubmit={handleSubmit}
+                    defaultValue={rowToEdit !== null && rows[rowToEdit]}
+                />
             )}
         </div>
     );
 }
 
 export default EmployeeRequest;
+
