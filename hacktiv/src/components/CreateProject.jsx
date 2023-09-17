@@ -14,7 +14,18 @@ function CreateProject() {
 
   const handleInputChange = e => {
     const { name, value } = e.target;
-    setProjectData({ ...projectData, [name]: value });
+
+    if (name === 'deadline') {
+      const date = new Date(value);
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const year = date.getFullYear();
+      const formattedDate = `${month}/${day}/${year}`;
+
+      setProjectData({ ...projectData, [name]: formattedDate });
+    } else {
+      setProjectData({ ...projectData, [name]: value });
+    }
   };
 
   const handleAddProject = async () => {

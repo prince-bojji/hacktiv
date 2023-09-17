@@ -74,19 +74,19 @@
           "project_details": "Restaurant Website"
         },
         {
-          "project_name": "hacktiv",
+          "project_name": "gfdgdfdf",
           "status": "ongoing",
-          "deadline": "2023-09-26",
-          "contributor": "johanten222@gmail.com",
-          "project_details": "abcde"
+          "deadline": "09/20/2023",
+          "contributor": "ha",
+          "project_details": "ha"
         }
       ]
     },
     {
       "id": 2,
-      "name": "Jehan Batang2",
-      "email": "johanten222@gmail.com",
-      "password": "johanten",
+      "name": "test test",
+      "email": "test@gmail.com",
+      "password": "test",
       "current_project": "Table for Juan",
       "projects_participated": 2,
       "time_entries": [
