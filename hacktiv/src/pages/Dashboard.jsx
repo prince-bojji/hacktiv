@@ -37,8 +37,8 @@ function Dashboard() {
     filteredTimeEntries.length > 0 && filteredTimeEntries[0].time_out;
   const timeout = timeOut;
   const overTime =
-    filteredTimeEntries.length > 0 && filteredTimeEntries[0].overtime_hours;
-  const overtime = overTime + ' hrs';
+  filteredTimeEntries.length > 0 && filteredTimeEntries[0].overtime_hours;
+const overtime = overTime > 0 ? overTime + 'hrs' : '0 hrs';
   const date = formattedDate;
   const currentProject = targetUser.current_project;
   const clockhours =
@@ -165,7 +165,7 @@ function Dashboard() {
                     </p>
                   )}
                   <p className='py-1'>
-                    <strong>Overtime Hours:</strong> {entry.overtime_hours}
+                  <strong>Overtime Hours:</strong> {entry.overtime_hours.length > 0 ? entry.overtime_hours : '0'}
                   </p>
                   <p>
                     <strong>Total Clock Hours:</strong>{' '}
