@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jsonData from '../data/db.json';
 import { useUserContext } from '/src/components/UserContext';
@@ -23,11 +23,11 @@ function Dashboard() {
   const options = { month: '2-digit', day: '2-digit', year: 'numeric' };
   const formattedDate = currentDate.toLocaleDateString(undefined, options);
 
-  const targetUser = jsonData.users.find(user => user.email === targetEmail);
+  const targetUser = jsonData.users.find((user) => user.email === targetEmail);
 
   const currDate = formattedDate;
   const filteredTimeEntries = targetUser.time_entries.filter(
-    entry => entry.date === currDate
+    (entry) => entry.date === currDate
   );
 
   const timeIn =
@@ -37,30 +37,11 @@ function Dashboard() {
     filteredTimeEntries.length > 0 && filteredTimeEntries[0].time_out;
   const timeout = timeOut;
   const overTime =
-  filteredTimeEntries.length > 0 && filteredTimeEntries[0].overtime_hours;
-const overtime = overTime > 0 ? overTime + 'hrs' : '0 hrs';
+    filteredTimeEntries.length > 0 && filteredTimeEntries[0].overtime_hours;
+  const overtime = overTime > 0 ? overTime + 'hrs' : '0 hrs';
   const date = formattedDate;
-  const currentProject = targetUser.current_project;
-  const clockhours =
-    filteredTimeEntries.length > 0 && filteredTimeEntries[0].total_clock_hours;
-  const projectpartipated = targetUser.projects_participated;
 
-  const projects = [
-    {
-      id: 1,
-      name: 'TableforJuan',
-      status: 'Ongoing',
-      deadline: '09/27/2023',
-    },
-    {
-      id: 2,
-      name: 'Agapsyon',
-      status: 'Ongoing',
-      deadline: '09/27/2023',
-    },
-  ];
-
-  const totalProjects = projects.length;
+  const projects = targetUser.project; // Use the projects from the user data
 
   const daysOfWeek = [
     'Monday',
@@ -91,6 +72,19 @@ const overtime = overTime > 0 ? overTime + 'hrs' : '0 hrs';
 
   // Add here weekly duration per day
   const weeklyDuration = ['08:01', ''];
+
+  // Update "Current Project" and "Projects Participated" based on the user's data
+  const [currentProject, setCurrentProject] = useState(targetUser.current_project);
+  const [projectsParticipated, setProjectsParticipated] = useState(targetUser.projects_participated);
+
+  useEffect(() => {
+    // Update current project based on the latest project added
+    const latestProject = projects.length > 0 ? projects[projects.length - 1].project_name : '';
+    setCurrentProject(latestProject);
+
+    // Update projects participated based on the number of projects
+    setProjectsParticipated(projects.length);
+  }, [projects]);
 
   return (
     <div className='font-inter'>
@@ -165,7 +159,8 @@ const overtime = overTime > 0 ? overTime + 'hrs' : '0 hrs';
                     </p>
                   )}
                   <p className='py-1'>
-                  <strong>Overtime Hours:</strong> {entry.overtime_hours.length > 0 ? entry.overtime_hours : '0'}
+                    <strong>Overtime Hours:</strong>{' '}
+                    {entry.overtime_hours.length > 0 ? entry.overtime_hours : '0'}
                   </p>
                   <p>
                     <strong>Total Clock Hours:</strong>{' '}
@@ -180,7 +175,7 @@ const overtime = overTime > 0 ? overTime + 'hrs' : '0 hrs';
         {/* OVERVIEW */}
         <div className='lg:w-[48%] mb-3 border border-tertiary rounded-2xl'>
           <div className='rounded-tl-2xl rounded-tr-2xl p-5 py-2 bg-accent-a'>
-            <div className='font-bold text-teriary text-[16px]'>Overview</div>
+            <div className='font-bold text-teriary text-[16px]'>Project Overview</div>
           </div>
 
           <div className='px-5 py-2'>
@@ -195,18 +190,9 @@ const overtime = overTime > 0 ? overTime + 'hrs' : '0 hrs';
 
             <div className=''>
               <div className=''>
-                <p className='text-[14px] text-teriary'>Clocked Hours</p>
-                <p className='font-bold text-accent text-[20px] lg:ml-3 whitespace-nowrap'>
-                  {clockhours}
-                </p>
-              </div>
-            </div>
-
-            <div className=''>
-              <div className=''>
                 <p className='text-[14px] text-teriary'>Project Participated</p>
                 <p className='font-bold text-accent text-[20px] lg:ml-3 whitespace-nowrap'>
-                  {projectpartipated}
+                  {projectsParticipated}
                 </p>
               </div>
             </div>
@@ -232,11 +218,11 @@ const overtime = overTime > 0 ? overTime + 'hrs' : '0 hrs';
               <tbody className=''>
                 {projects.map((project, index) => (
                   <tr
-                    key={project.id}
+                    key={index}
                     className={` ${
                       index !== projects.length - 1 ? 'border-b' : ''
                     }`}>
-                    <td className='py-2 px-1'>{project.name}</td>
+                    <td className='py-2 px-1'>{project.project_name}</td>
                     <td className='py-2 px-1'>{project.status}</td>
                     <td className='py-2 px-1'>{project.deadline}</td>
                   </tr>

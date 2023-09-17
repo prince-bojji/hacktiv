@@ -17,10 +17,10 @@ function CreateProject() {
 
     if (name === 'deadline') {
       const date = new Date(value);
+      const year = date.getFullYear();
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
       const day = date.getDate().toString().padStart(2, '0');
-      const year = date.getFullYear();
-      const formattedDate = `${month}/${day}/${year}`;
+      const formattedDate = `${year}-${month}-${day}`;
 
       setProjectData({ ...projectData, [name]: formattedDate });
     } else {
@@ -30,14 +30,14 @@ function CreateProject() {
 
   const handleAddProject = async () => {
     try {
-      const targetEmail = user.email;
+      const targetEmail = projectData.contributor; 
       const response = await axios.get(
         `http://localhost:3000/users?email=${targetEmail}`
       );
-      const currentUser = response.data[0];
+      const contributor = response.data[0];
 
-      if (!currentUser) {
-        console.error('User not found');
+      if (!contributor) {
+        console.error('Contributor not found');
         return;
       }
 
@@ -45,21 +45,41 @@ function CreateProject() {
         project_name: projectData.project_name,
         status: projectData.status,
         deadline: projectData.deadline,
-        contributor: projectData.contributor,
         project_details: projectData.project_details,
       };
+
+      if (!contributor.project) {
+        contributor.project = [];
+      }
+      contributor.project.push(newProject);
+
+      const currentUserEmail = user.email;
+      const currentUserResponse = await axios.get(
+        `http://localhost:3000/users?email=${currentUserEmail}`
+      );
+      const currentUser = currentUserResponse.data[0];
+
+      if (!currentUser) {
+        console.error('Current user not found');
+        return;
+      }
 
       if (!currentUser.project) {
         currentUser.project = [];
       }
       currentUser.project.push(newProject);
 
+      // Update contributor and current user in the database
+      await axios.put(
+        `http://localhost:3000/users/${contributor.id}`,
+        contributor
+      );
       await axios.put(
         `http://localhost:3000/users/${currentUser.id}`,
         currentUser
       );
 
-      alert('Project added successfully!', newProject);
+      alert('Project added successfully!');
 
       setProjectData({
         project_name: '',
