@@ -57,6 +57,29 @@
           "overtime_hours": 0,
           "total_clock_hours": 0
         }
+      ],
+      "project": [
+        {
+          "project_name": "agapsyon",
+          "status": "completed",
+          "deadline": "09/05/2023",
+          "contributor": "johanten222@gmail.com",
+          "project_details": "Disaster Readiness Web Application"
+        },
+        {
+          "project_name": "tableforjuan",
+          "status": "ongoing",
+          "deadline": "09/26/2023",
+          "contributor": "johanten222@gmail.com",
+          "project_details": "Restaurant Website"
+        },
+        {
+          "project_name": "hacktiv",
+          "status": "ongoing",
+          "deadline": "2023-09-26",
+          "contributor": "johanten222@gmail.com",
+          "project_details": "abcde"
+        }
       ]
     },
     {

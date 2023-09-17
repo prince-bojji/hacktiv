@@ -107,7 +107,7 @@ const TimeInOut = () => {
     try {
       await axios.put(`http://localhost:3000/users/${currentUser.id}`, currentUser);
 
-      console.log('Time entry added:', newTimeEntry);
+      alert('Your attendance have been recorded!', newTimeEntry);
 
       setTimeIn('');
       setTimeOut('');
