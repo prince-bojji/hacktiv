@@ -45,7 +45,7 @@ Now you should be able to see the project running at localhost:3000.
         User B:
             Email: test@gmail.com
             Password: test
-            Since there is no admin panel, you can add users directly in the ```db.json```.
+            Since there is no admin panel, you can add users directly in the 'db.json'.
 
 3. After logging in to your account, you may notice that some information is empty. This occurs because you haven't yet clocked in or out. The information will be populated immediately once your time in and out, and then click save to confirm your attendance.
 
