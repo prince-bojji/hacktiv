@@ -64,7 +64,11 @@ function Login({ onLogin }) {
           />
         </div>
 
-        {error && <p className='text-center mb-2' style={{ color: 'red' }}>{error}</p>}
+        {error && (
+          <p className='text-center mb-2' style={{ color: 'red' }}>
+            {error}
+          </p>
+        )}
 
         <div className='flex justify-center'>
           <button

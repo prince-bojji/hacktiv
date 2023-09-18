@@ -5,6 +5,8 @@ import { useUserContext } from '/src/components/UserContext';
 
 function FreedomBoard() {
   const date = new Date();
+  const options = { month: '2-digit', day: '2-digit', year: 'numeric' };
+  const formattedDate = date.toLocaleDateString(undefined, options);
 
   const { user } = useUserContext();
   const targetEmail = user.email;
@@ -35,7 +37,7 @@ function FreedomBoard() {
       content: newContent,
       author: name,
       date_posted:
-        date.getMonth() + '/' + date.getDay() + '/' + date.getFullYear(),
+        formattedDate,
       time_posted:
         (date.getHours() % 12) +
         ':' +

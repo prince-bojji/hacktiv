@@ -6,7 +6,7 @@
       "email": "johanten22@gmail.com",
       "password": "johanten",
       "current_project": "Table for Juan",
-      "projects_participated": 2,
+      "projects_participated": 3,
       "time_entries": [
         {
           "date": "09/11/2023",
@@ -79,7 +79,7 @@
           "contributor": "test@gmail.com"
         }
       ],
-      "post" : [
+      "post": [
         {
           "id": 1,
           "title": "A GIF image of a confused person surrounded by code and error messages.",
@@ -96,7 +96,7 @@
       "email": "test@gmail.com",
       "password": "test",
       "current_project": "Table for Juan",
-      "projects_participated": 2,
+      "projects_participated": 3,
       "time_entries": [
         {
           "date": "09/14/2023",
@@ -141,7 +141,7 @@
           "contributor": "test@gmail.com"
         }
       ],
-      "post" : [
+      "post": [
         {
           "id": 1,
           "title": "An image showing two developers, one with a React logo on their shirt and the other with a CSS logo on their shirt, engaged in an arm-wrestling match.",
