@@ -9,7 +9,6 @@ import ProjectEnlisting from '/src/pages/ProjectEnlisting';
 import TimeTracker from '/src/pages/TimeTracker';
 import NavBar from '/src/components/NavBar';
 import { UserProvider } from '/src/components/UserContext';
-import Test from '/src/pages/Test';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);

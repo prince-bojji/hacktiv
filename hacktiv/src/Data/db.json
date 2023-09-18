@@ -56,6 +56,13 @@
           "time_out": "12:05 PM",
           "overtime_hours": 0,
           "total_clock_hours": 0
+        },
+        {
+          "date": "09/18/2023",
+          "time_in": "03:55 PM",
+          "time_out": "03:56 PM",
+          "overtime_hours": 0,
+          "total_clock_hours": 0.02
         }
       ],
       "project": [
@@ -118,6 +125,13 @@
           "time_out": "09:18 PM",
           "overtime_hours": 0,
           "total_clock_hours": 0.03
+        },
+        {
+          "date": "09/18/2023",
+          "time_in": "04:01 PM",
+          "time_out": "04:04 PM",
+          "overtime_hours": 0,
+          "total_clock_hours": 0.05
         }
       ],
       "project": [
