@@ -39,11 +39,11 @@ Now you should be able to see the project running at localhost:3000.
 1. We haven't implemented a registration feature since we assume that accounts will be provided by the company. Currently, there are only two users available for testing:
 
         User A:
-            Email: ```johanten22@gmail.com```
+            Email: johanten22@gmail.com
             Password: johanten
    
         User B:
-            Email: ```test@gmail.com```
+            Email: test@gmail.com
             Password: test
             Since there is no admin panel, you can add users directly in the ```db.json```.
 
