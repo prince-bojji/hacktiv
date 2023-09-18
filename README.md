@@ -40,8 +40,7 @@ Now you should be able to see the project running at localhost:3000.
 ## Contributors:
 | Task  | Front-end | Status | Back-end | Status |
 | ------------- | ------------- |  ------------- | ------------- | ------------- |
-| Login Page  | Japay, Urriko  | Completed | Batang, Jehan | Completed |
-| NavBar  | Batang, Jehan | Completed |          
+| Login Page  | Japay, Urriko  | Completed | Batang, Jehan | Completed |    
 | Dashboard  | Mejia, Juan | Completed | Batang, Jehan | Completed |
 | Time Logs  | Maramag, Cheyenne | Completed | Batang, Jehan | Completed |
 | Employee Request | Flores, Andrea Nicole | Completed | Tolentino, John Cedrick | Ongoing |
