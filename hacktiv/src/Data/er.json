@@ -1,0 +1,25 @@
+{
+  "request": [
+    {
+      "id": 1,
+      "subject": "Frontend Design",
+      "recipient": "Sasha Brauss",
+      "message": "Update the design of the UI.",
+      "name": "1"
+    },
+    {
+      "id": 2,
+      "subject": "Backend Code",
+      "recipient": "Vincent Fabron",
+      "message": "Edit the code for the server.",
+      "name": "2"
+    },
+    {
+      "id": 3,
+      "subject": "Github Repository",
+      "recipient": "Rias Gremory",
+      "message": "Please update the repository.",
+      "name": "3"
+    }
+  ]
+}
