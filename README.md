@@ -30,7 +30,7 @@ Before you begin, ensure you have installed the latest version of:
 4. Run API
    ```bash
     json-server --watch src/Data/db.json --port 3000
-    json-server --watch src/Data/er.json --port3000
+    json-server --watch src/Data/er.json --port 3000
     
 5. Start the development server:
    ```bash
@@ -68,7 +68,7 @@ Now you should be able to see the project running at localhost:3000.
 | Login Page  | Japay, Urriko  | Completed | Batang, Jehan | Completed |    
 | Dashboard  | Mejia, Juan | Completed | Batang, Jehan | Completed |
 | Time Logs  | Maramag, Cheyenne | Completed | Batang, Jehan | Completed |
-| Employee Request | Flores, Andrea Nicole | Completed | Tolentino, John Cedrick | Completed |
+| Employee Request | Flores, Andrea Nicole | Completed | Tolentino, John Cedrick | Ongoing |
 | Project Enlisting  | Hamor, Mary Grizelle | Completed | Batang, Jehan | Completed |
 | File System  | Flores, Andrea Nicole | Completed | Tolentino, John Cedrick | Ongoing |
 | Freedom Board | Nablo, Kenshin |Completed | Batang, Jehan |Completed |
